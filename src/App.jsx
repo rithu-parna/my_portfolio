@@ -16,8 +16,6 @@ import {
   ExternalLink,
   MapPin,
   Phone,
-  Play,
-  Settings,
   ChevronRight
 } from 'lucide-react';
 import './App.css';
@@ -106,11 +104,7 @@ function App() {
   // Skills Animation State
   const [skillsActive, setSkillsActive] = useState(false);
 
-  // Playground State
-  const [activePlaygroundTab, setActivePlaygroundTab] = useState('button');
-  const [loaderSpeed, setLoaderSpeed] = useState(1.5);
-  const [confetti, setConfetti] = useState([]);
-  const [isCardHovered, setIsCardHovered] = useState(false);
+
 
   // Projects State
   const [projectFilter, setProjectFilter] = useState('all');
@@ -142,7 +136,7 @@ function App() {
       }
 
       // Scroll Spy for Navbar
-      const sections = ['home', 'about', 'skills', 'playground', 'projects', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
@@ -167,23 +161,7 @@ function App() {
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 
-  // Confetti Click Handler for Playground
-  const triggerConfetti = () => {
-    const newParticles = [];
-    const colors = ['#8b5cf6', '#06b6d4', '#eab308', '#ef4444', '#10b981'];
-    for (let i = 0; i < 20; i++) {
-      newParticles.push({
-        id: Date.now() + i,
-        dx: `${(Math.random() - 0.5) * 200}px`,
-        dy: `${(Math.random() - 0.5) * 200}px`,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-    setConfetti(newParticles);
-    setTimeout(() => {
-      setConfetti([]);
-    }, 1000);
-  };
+
 
   // Contact Form Validation & Submit
   const handleInputChange = (e) => {
@@ -296,79 +274,7 @@ function App() {
     }
   ];
 
-  // Code Playground Tabs Code Content
-  const playgroundCode = {
-    button: `// InteractiveButton.jsx
-import React from 'react';
 
-export const Button = ({ onClick, children }) => {
-  return (
-    <button 
-      className="neon-glow-btn"
-      onClick={onClick}
-      style={{
-        padding: '1rem 2rem',
-        borderRadius: '50px',
-        background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
-        boxShadow: '0 0 20px rgba(139, 92, 246, 0.4)',
-        border: 'none',
-        color: '#fff',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease'
-      }}
-    >
-      {children}
-    </button>
-  );
-};`,
-    card: `// NeoCard.jsx
-import React, { useState } from 'react';
-
-export const NeoCard = () => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div 
-      className="neo-card"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        transform: hovered ? 'translateY(-10px) rotate(2deg)' : 'none',
-        background: 'rgba(255, 255, 255, 0.05)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        padding: '1.5rem',
-        borderRadius: '12px',
-        backdropFilter: 'blur(10px)',
-        transition: 'transform 0.4s ease',
-        cursor: 'pointer'
-      }}
-    >
-      <div className="avatar" />
-      <h3>Interactive Hover Card</h3>
-      <p>Hover to see 3D rotate transition</p>
-    </div>
-  );
-};`,
-    loader: `// LuminaLoader.jsx
-import React from 'react';
-
-export const LuminaLoader = ({ duration }) => {
-  return (
-    <div 
-      className="lumina-loader"
-      style={{
-        width: '80px',
-        height: '80px',
-        border: '4px solid #06b6d4',
-        borderTopColor: '#8b5cf6',
-        borderRadius: '50%',
-        animation: \`spin \${duration}s linear infinite\`,
-        boxShadow: '0 0 15px rgba(6, 182, 212, 0.5)'
-      }}
-    />
-  );
-};`
-  };
 
   return (
     <div className="portfolio-app">
@@ -408,15 +314,7 @@ export const LuminaLoader = ({ duration }) => {
                   Skills
                 </a>
               </li>
-              <li>
-                <a 
-                  href="#playground" 
-                  className={`nav-link ${activeSection === 'playground' ? 'active' : ''}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Playground
-                </a>
-              </li>
+
               <li>
                 <a 
                   href="#projects" 
@@ -524,7 +422,7 @@ export const LuminaLoader = ({ duration }) => {
                         &nbsp;&nbsp;philosophy: <span className="code-string">"Scalable architectures & API Integration"</span>,<br />
                         &nbsp;&nbsp;coreStack: [<span className="code-string">"React.js"</span>, <span className="code-string">"Redux"</span>, <span className="code-string">"JavaScript"</span>],<br />
                         &nbsp;&nbsp;location: <span className="code-string">"Bangalore, India"</span>,<br />
-                        &nbsp;&nbsp;experience: <span className="code-string">"3 Years"</span><br />
+                        &nbsp;&nbsp;experience: <span className="code-string">"3+ Years"</span><br />
                         &#125;;<br /><br />
                         <span className="code-comment">// Transforming complex requirements into UI</span><br />
                         <span className="code-keyword">function</span> <span className="code-function">init</span>() &#123;<br />
@@ -699,126 +597,7 @@ export const LuminaLoader = ({ duration }) => {
         </div>
       </section>
 
-      {/* Interactive Code Playground */}
-      <section id="playground" className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-subtitle">Live Sandbox</span>
-            <h2 className="section-title">Interactive Playground</h2>
-            <p className="section-desc">
-              Inspect the real React codebase and interact with its rendered output in real-time.
-            </p>
-          </div>
 
-          <div className="playground-box">
-            <div className="playground-editor">
-              <div className="editor-header">
-                <div className="editor-tabs">
-                  <button 
-                    className={`editor-tab ${activePlaygroundTab === 'button' ? 'active' : ''}`}
-                    onClick={() => setActivePlaygroundTab('button')}
-                  >
-                    InteractiveButton.jsx
-                  </button>
-                  <button 
-                    className={`editor-tab ${activePlaygroundTab === 'card' ? 'active' : ''}`}
-                    onClick={() => setActivePlaygroundTab('card')}
-                  >
-                    NeoCard.jsx
-                  </button>
-                  <button 
-                    className={`editor-tab ${activePlaygroundTab === 'loader' ? 'active' : ''}`}
-                    onClick={() => setActivePlaygroundTab('loader')}
-                  >
-                    LuminaLoader.jsx
-                  </button>
-                </div>
-                <Code2 size={16} style={{ color: 'var(--text-muted)' }} />
-              </div>
-              <div className="editor-body">
-                <pre style={{ margin: 0 }}>
-                  <code style={{ fontClassName: 'var(--font-mono)' }}>
-                    {playgroundCode[activePlaygroundTab]}
-                  </code>
-                </pre>
-              </div>
-            </div>
-
-            <div className="playground-preview">
-              <div className="preview-header">
-                <Settings size={16} />
-                <span>Interactive Output Preview</span>
-              </div>
-              <div className="preview-body">
-                {/* Dynamic previews */}
-                {activePlaygroundTab === 'button' && (
-                  <div style={{ textAlign: 'center' }}>
-                    <button className="preview-button-comp" onClick={triggerConfetti}>
-                      Click to Test Action
-                    </button>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '1rem' }}>
-                      Triggers active UI animation particles
-                    </p>
-                    {confetti.map((particle) => (
-                      <span 
-                        key={particle.id} 
-                        className="confetti-particle"
-                        style={{
-                          left: '50%',
-                          top: '50%',
-                          backgroundColor: particle.color,
-                          '--dx': particle.dx,
-                          '--dy': particle.dy
-                        }}
-                      />
-                    ))}
-                  </div>
-                )}
-
-                {activePlaygroundTab === 'card' && (
-                  <div 
-                    className="preview-card-comp"
-                    onMouseEnter={() => setIsCardHovered(true)}
-                    onMouseLeave={() => setIsCardHovered(false)}
-                    style={{
-                      transform: isCardHovered ? 'translateY(-10px) rotate(3deg)' : 'none',
-                    }}
-                  >
-                    <div className="preview-card-img"></div>
-                    <h4 style={{ margin: '0.5rem 0', fontFamily: 'var(--font-display)' }}>Interactive Card</h4>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                      Hover over this card to trigger custom 3D rotation logic.
-                    </p>
-                  </div>
-                )}
-
-                {activePlaygroundTab === 'loader' && (
-                  <div style={{ textAlign: 'center', width: '100%', padding: '0 2rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-                      <div 
-                        className="preview-animation-comp"
-                        style={{ animationDuration: `${loaderSpeed}s` }}
-                      ></div>
-                    </div>
-                    <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.5rem' }}>
-                      Rotation Speed: {loaderSpeed}s
-                    </label>
-                    <input 
-                      type="range" 
-                      min="0.2" 
-                      max="3" 
-                      step="0.1" 
-                      value={loaderSpeed} 
-                      onChange={(e) => setLoaderSpeed(parseFloat(e.target.value))}
-                      style={{ width: '100%', accentColor: 'var(--accent-primary)' }}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Projects Portfolio Section */}
       <section id="projects" className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--card-border)', borderBottom: '1px solid var(--card-border)' }}>
@@ -856,32 +635,47 @@ export const LuminaLoader = ({ duration }) => {
                 <div className="project-media">
                   <div className="project-mockup">
                     <div className="mockup-header">
-                      <span className="mockup-dot"></span>
-                      <span className="mockup-dot"></span>
-                      <span className="mockup-dot"></span>
+                      <span className="mockup-dot" style={{ backgroundColor: '#ef4444' }}></span>
+                      <span className="mockup-dot" style={{ backgroundColor: '#eab308' }}></span>
+                      <span className="mockup-dot" style={{ backgroundColor: '#10b981' }}></span>
                     </div>
                     <div className="mockup-content">
-                      <div 
-                        style={{
-                          width: '50px',
-                          height: '50px',
-                          borderRadius: '10px',
-                          background: project.themeColor,
-                          opacity: 0.8,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#fff',
-                          fontWeight: 'bold',
-                          marginBottom: '0.5rem',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                        }}
-                      >
-                        {project.title.charAt(0)}
-                      </div>
-                      <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                        {project.tag}
-                      </span>
+                      {project.id === 1 && (
+                        <div className="mini-preview ecom-preview">
+                          <div className="mini-item-card">
+                            <span className="mini-item-img">💎</span>
+                            <div className="mini-item-info">
+                              <div className="mini-item-title">Savitha Gold</div>
+                              <div className="mini-item-price">Catalog Live</div>
+                            </div>
+                            <span className="mini-item-btn">Browse</span>
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 2 && (
+                        <div className="mini-preview logistics-preview">
+                          <div className="mini-chart">
+                            <div className="bar" style={{ height: '35%' }}></div>
+                            <div className="bar" style={{ height: '75%' }}></div>
+                            <div className="bar" style={{ height: '55%' }}></div>
+                            <div className="bar" style={{ height: '95%' }}></div>
+                          </div>
+                          <div className="mini-status">
+                            <span className="dot pulse"></span> Torus SCM Monitor
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 3 && (
+                        <div className="mini-preview gallery-preview">
+                          <div className="mini-gallery-grid">
+                            <div className="grid-dot" style={{ background: 'var(--accent-primary)' }}></div>
+                            <div className="grid-dot" style={{ background: '#10b981' }}></div>
+                            <div className="grid-dot" style={{ background: '#3b82f6' }}></div>
+                            <div className="grid-dot" style={{ background: 'var(--accent-secondary)' }}></div>
+                          </div>
+                          <div className="mini-search-bar">Thillakkam Mall...</div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -988,7 +782,7 @@ export const LuminaLoader = ({ duration }) => {
                 <div className="contact-icon"><MapPin size={20} /></div>
                 <div>
                   <h4 className="contact-method-title">Location</h4>
-                  <div className="contact-method-value">Bangalore, India</div>
+                  <div className="contact-method-value">Kozhikode, Kerala, India</div>
                 </div>
               </div>
 
@@ -1070,7 +864,7 @@ export const LuminaLoader = ({ duration }) => {
         <div className="container">
           <div className="footer-content">
             <a href="#home" className="logo">
-              Rithuparna<span className="logo-dot"></span>
+              Rithuparna A C<span className="logo-dot"></span>
             </a>
             <p className="footer-text">
               © {new Date().getFullYear()} Rithuparna AC. All rights reserved. Made with React.
