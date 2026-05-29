@@ -376,7 +376,7 @@ export const LuminaLoader = ({ duration }) => {
       <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
         <div className="container">
           <a href="#home" className="logo">
-            Rithuparna<span className="logo-dot"></span>
+            Rithuparna A C<span className="logo-dot"></span>
           </a>
 
           <nav>
@@ -477,7 +477,7 @@ export const LuminaLoader = ({ duration }) => {
                 <span className="cursor">|</span>
               </div>
               <p className="hero-desc">
-                Product Engineer with 3 years of experience building responsive, scalable web applications using React.js, Redux, and JavaScript. Experienced in developing enterprise supply chain modules, logistics panels, and commercial e-commerce storefronts.
+                Product Engineer with 3+ years of experience building responsive, scalable web applications using React.js, Redux, and JavaScript. Experienced in developing enterprise supply chain modules, logistics panels, and commercial e-commerce storefronts.
               </p>
               <div className="hero-buttons">
                 <a href="#projects" className="btn btn-primary">

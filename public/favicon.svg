@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="1" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="1" />
+    </linearGradient>
+  </defs>
+  <!-- Background Rounded Rect -->
+  <rect width="512" height="512" rx="128" fill="url(#grad)" />
+  
+  <!-- Sleek Code & Monogram Icon -->
+  <!-- Left Code Bracket < -->
+  <path d="M160 180 L80 256 L160 332" stroke="#ffffff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8" />
+  
+  <!-- Right Code Bracket > -->
+  <path d="M352 180 L432 256 L352 332" stroke="#ffffff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8" />
+  
+  <!-- Center Stylized 'R' Monogram -->
+  <path d="M210 340 V172 H270 C305 172 330 190 330 222 C330 254 305 272 270 272 H210 M265 272 L320 340" stroke="#ffffff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+</svg>
