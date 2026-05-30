@@ -16,7 +16,8 @@ import {
   ExternalLink,
   MapPin,
   Phone,
-  ChevronRight
+  ChevronRight,
+  Copy
 } from 'lucide-react';
 import './App.css';
 
@@ -115,6 +116,13 @@ function App() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [formErrors, setFormErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
+  const [copiedType, setCopiedType] = useState(null);
+
+  const handleCopy = (text, type) => {
+    navigator.clipboard.writeText(text);
+    setCopiedType(type);
+    setTimeout(() => setCopiedType(null), 2000);
+  };
 
   // Refs for Scroll Spy and Skills trigger
   const skillsRef = useRef(null);
@@ -868,47 +876,99 @@ function App() {
         <div className="container">
           <div className="section-header">
             <span className="section-subtitle">Collaborate</span>
-            <h2 className="section-title">Get In Touch</h2>
+            <h2 className="section-title">Let's Build Something Great</h2>
             <p className="section-desc">
-              Have a complex frontend problem or want to collaborate on a premium website project? Drop a message.
+              Have a complex frontend problem, require premium React development, or want to discuss full-time roles? Reach out today.
             </p>
           </div>
 
           <div className="contact-grid">
-            <div className="contact-info">
-              <div className="contact-method">
-                <div className="contact-icon"><Mail size={20} /></div>
-                <div>
-                  <h4 className="contact-method-title">Direct Email</h4>
-                  <a href="mailto:rithu7025@gmail.com" className="contact-method-value">rithu7025@gmail.com</a>
+            {/* Left Column: Interactive Contact Dashboard */}
+            <div className="contact-info-panel">
+              {/* Availability Indicator */}
+              <div className="availability-card glass-card">
+                <div className="availability-pulse">
+                  <span className="pulse-dot"></span>
+                </div>
+                <div className="availability-text">
+                  <span className="status-label">CURRENT AVAILABILITY</span>
+                  <span className="status-value">Active & Open to New Opportunities</span>
                 </div>
               </div>
 
-              <div className="contact-method">
-                <div className="contact-icon"><MapPin size={20} /></div>
-                <div>
-                  <h4 className="contact-method-title">Location</h4>
-                  <div className="contact-method-value">Kozhikode, Kerala, India</div>
-                </div>
-              </div>
-
-              <div className="contact-method">
-                <div className="contact-icon"><Phone size={20} /></div>
-                <div>
-                  <h4 className="contact-method-title">Phone & Social Connect</h4>
-                  <a href="tel:+918086710182" className="contact-method-value" style={{ display: 'block', marginBottom: '0.75rem' }}>+91 8086710182</a>
-                  <div className="social-links">
-                    <a href="https://github.com/rithu-parna" target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label="Github Profile"><Github size={18} /></a>
-                    <a href="https://linkedin.com/in/rithuparna-rithu" target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label="LinkedIn Profile"><Linkedin size={18} /></a>
+              {/* Interactive Contact Cards */}
+              <div className="contact-methods-stack">
+                {/* Email Card */}
+                <div 
+                  className="interactive-contact-card glass-card"
+                  onClick={() => handleCopy('rithu7025@gmail.com', 'email')}
+                >
+                  <div className="card-icon-wrapper">
+                    <Mail size={22} className="card-icon" />
                   </div>
+                  <div className="card-content">
+                    <span className="card-label">DIRECT EMAIL</span>
+                    <a href="mailto:rithu7025@gmail.com" className="card-value" onClick={(e) => e.stopPropagation()}>
+                      rithu7025@gmail.com
+                    </a>
+                  </div>
+                  <button className="copy-action-btn" aria-label="Copy Email">
+                    {copiedType === 'email' ? <span className="copy-tooltip active">Copied!</span> : <Copy size={16} />}
+                  </button>
+                </div>
+
+                {/* Phone Card */}
+                <div 
+                  className="interactive-contact-card glass-card"
+                  onClick={() => handleCopy('+918086710182', 'phone')}
+                >
+                  <div className="card-icon-wrapper">
+                    <Phone size={22} className="card-icon" />
+                  </div>
+                  <div className="card-content">
+                    <span className="card-label">PHONE & WHATSAPP</span>
+                    <a href="tel:+918086710182" className="card-value" onClick={(e) => e.stopPropagation()}>
+                      +91 8086710182
+                    </a>
+                  </div>
+                  <button className="copy-action-btn" aria-label="Copy Phone">
+                    {copiedType === 'phone' ? <span className="copy-tooltip active">Copied!</span> : <Copy size={16} />}
+                  </button>
+                </div>
+
+                {/* Location Card */}
+                <div className="interactive-contact-card glass-card location-card">
+                  <div className="card-icon-wrapper">
+                    <MapPin size={22} className="card-icon" />
+                  </div>
+                  <div className="card-content">
+                    <span className="card-label">LOCATION</span>
+                    <span className="card-value">Kozhikode, Kerala, India</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Channels Connect */}
+              <div className="social-connect-box glass-card">
+                <span className="connect-title">CONNECT ELSEWHERE</span>
+                <div className="social-connect-links">
+                  <a href="https://github.com/rithu-parna" target="_blank" rel="noopener noreferrer" className="social-connect-btn github">
+                    <Github size={18} />
+                    <span>GitHub</span>
+                  </a>
+                  <a href="https://linkedin.com/in/rithuparna-rithu" target="_blank" rel="noopener noreferrer" className="social-connect-btn linkedin">
+                    <Linkedin size={18} />
+                    <span>LinkedIn</span>
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div className="contact-form glass-card">
-              <form className="contact-form-comp" onSubmit={handleFormSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name" className="form-label">Full Name</label>
+            {/* Right Column: Premium Contact Form */}
+            <div className="contact-form-panel glass-card">
+              <form className="premium-contact-form" onSubmit={handleFormSubmit}>
+                {/* Floating Group: Name */}
+                <div className={`form-floating-group ${formState.name ? 'has-value' : ''}`}>
                   <input 
                     type="text" 
                     id="name" 
@@ -916,13 +976,16 @@ function App() {
                     value={formState.name}
                     onChange={handleInputChange}
                     className="form-input" 
-                    placeholder="e.g. John Doe"
+                    placeholder=" "
+                    required
                   />
-                  {formErrors.name && <span style={{ color: '#ef4444', fontSize: '0.8rem' }}>{formErrors.name}</span>}
+                  <label htmlFor="name" className="form-label">Full Name</label>
+                  <div className="input-focus-line"></div>
+                  {formErrors.name && <span className="form-error-msg">{formErrors.name}</span>}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email" className="form-label">Email Address</label>
+                {/* Floating Group: Email */}
+                <div className={`form-floating-group ${formState.email ? 'has-value' : ''}`}>
                   <input 
                     type="email" 
                     id="email" 
@@ -930,26 +993,33 @@ function App() {
                     value={formState.email}
                     onChange={handleInputChange}
                     className="form-input" 
-                    placeholder="e.g. john@domain.com"
+                    placeholder=" "
+                    required
                   />
-                  {formErrors.email && <span style={{ color: '#ef4444', fontSize: '0.8rem' }}>{formErrors.email}</span>}
+                  <label htmlFor="email" className="form-label">Email Address</label>
+                  <div className="input-focus-line"></div>
+                  {formErrors.email && <span className="form-error-msg">{formErrors.email}</span>}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="message" className="form-label">Message</label>
+                {/* Floating Group: Message */}
+                <div className={`form-floating-group ${formState.message ? 'has-value' : ''}`}>
                   <textarea 
                     id="message" 
                     name="message" 
                     value={formState.message}
                     onChange={handleInputChange}
                     className="form-textarea" 
-                    placeholder="Tell me about your project context..."
+                    placeholder=" "
+                    required
                   ></textarea>
-                  {formErrors.message && <span style={{ color: '#ef4444', fontSize: '0.8rem' }}>{formErrors.message}</span>}
+                  <label htmlFor="message" className="form-label">Tell me about your project...</label>
+                  <div className="input-focus-line"></div>
+                  {formErrors.message && <span className="form-error-msg">{formErrors.message}</span>}
                 </div>
 
-                <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
-                  Send Message <Send size={16} />
+                <button type="submit" className="btn btn-primary premium-submit-btn">
+                  <span>Send Message</span>
+                  <Send size={16} className="submit-send-icon" />
                 </button>
               </form>
             </div>
