@@ -109,6 +109,7 @@ function App() {
   // Projects State
   const [projectFilter, setProjectFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   // Contact Form State
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -207,6 +208,7 @@ function App() {
       details: "Savitha Jewellery is a live customer e-commerce application. Developed using React.js and modern web standards, it delivers optimized page loading speeds and highly responsive customer journeys. Built with reusability, modular layouts, and cross-browser visual consistency in mind.",
       tech: ["React.js", "JavaScript (ES6)", "CSS3", "Responsive UI"],
       themeColor: "var(--accent-primary)",
+      image: "/savitha.png",
       liveUrl: "https://www.savithajewellery.com/",
       githubUrl: "https://github.com/rithu-parna"
     },
@@ -219,6 +221,7 @@ function App() {
       details: "Torus SCM is a supply chain management system built to handle intricate business operations. Responsible for designing centralized RFQ lists with advanced filtration controls, real-time approval notification system, service booking segments, billing workflows (invoices/credits), and customer/vendor finance modules.",
       tech: ["React.js", "Redux", "RESTful API Integration", "Bootstrap"],
       themeColor: "var(--accent-secondary)",
+      image: "/torus.png",
       liveUrl: "http://139.59.13.165:3564/",
       githubUrl: "https://github.com/rithu-parna"
     },
@@ -231,6 +234,7 @@ function App() {
       details: "Thillakkam Fancy Mall is a live retail store application. Emphasizes clean catalog listing layouts, efficient image loading strategies, and intuitive device-specific layouts to guarantee a seamless consumer shopping experience on both mobile and desktop screens.",
       tech: ["React.js", "HTML5", "CSS3 Modules", "Git/GitHub"],
       themeColor: "#10b981",
+      image: "/thillakkam.png",
       liveUrl: "https://thillakkamfancy.in/",
       githubUrl: "https://github.com/rithu-parna"
     },
@@ -243,6 +247,7 @@ function App() {
       details: "Book Store is a complete bookshop web application that allows users to explore a curated library of books, search by title or author, add items to a cart, and proceed through a smooth checkout experience. Built with React.js and modern UI patterns for a seamless reading-commerce experience.",
       tech: ["React.js", "JavaScript (ES6+)", "CSS3", "REST API"],
       themeColor: "#f59e0b",
+      image: "/bookstore.png",
       liveUrl: "https://github.com/rithu-parna/Book_Store",
       githubUrl: "https://github.com/rithu-parna/Book_Store"
     },
@@ -255,6 +260,7 @@ function App() {
       details: "Home Stay is a full-featured accommodation booking platform. Users can discover and book comfortable homestays with detailed property listings, an advanced search and filter system, image galleries, and a complete reservation flow. Designed with mobile-first responsiveness and an inviting visual aesthetic.",
       tech: ["React.js", "Node.js", "CSS3", "REST API"],
       themeColor: "#10b981",
+      image: "/homestay.png",
       liveUrl: "https://github.com/rithu-parna/home_stay_web_app",
       githubUrl: "https://github.com/rithu-parna/home_stay_web_app"
     },
@@ -267,6 +273,7 @@ function App() {
       details: "Nexus Mall is a comprehensive multi-vendor e-commerce marketplace. It empowers sellers to manage their storefronts while providing buyers with a unified shopping experience. Features include secure payment integration, real-time order tracking, vendor dashboards, product reviews, and inventory management.",
       tech: ["React.js", "Redux", "Node.js", "Payment Gateway"],
       themeColor: "#8b5cf6",
+      image: "/nexus.png",
       liveUrl: "https://github.com/rithu-parna",
       githubUrl: "https://github.com/rithu-parna"
     },
@@ -279,6 +286,7 @@ function App() {
       details: "Blood Donor App is a community-driven application designed to bridge the gap between blood donors and recipients during emergencies. Users can register as donors, search for nearby donors by blood group and location, send urgent requests, and manage donation history. Built for speed and accessibility when every second counts.",
       tech: ["React.js", "JavaScript", "Geolocation API", "CSS3"],
       themeColor: "#ef4444",
+      image: "/blood.png",
       liveUrl: "https://github.com/rithu-parna/Blood_Donar_App",
       githubUrl: "https://github.com/rithu-parna/Blood_Donar_App"
     },
@@ -291,6 +299,7 @@ function App() {
       details: "Chat App is a modern real-time messaging platform enabling users to communicate instantly through private and group conversations. Features include real-time message delivery, typing indicators, online status, media sharing, and message history. Built with WebSocket technology for lightning-fast, secure communication.",
       tech: ["React.js", "Socket.io", "Node.js", "Express"],
       themeColor: "#3b82f6",
+      image: "/chat.png",
       liveUrl: "https://github.com/rithu-parna",
       githubUrl: "https://github.com/rithu-parna"
     },
@@ -303,6 +312,7 @@ function App() {
       details: "Weather App delivers real-time meteorological data with an elegant, intuitive interface. Users can search any city worldwide to view current temperature, humidity, wind speed, weather conditions, and multi-day forecasts. Powered by live weather data APIs with beautiful dynamic backgrounds that reflect current conditions.",
       tech: ["React.js", "Weather API", "JavaScript", "CSS3"],
       themeColor: "#06b6d4",
+      image: "/weather.png",
       liveUrl: "https://github.com/rithu-parna/Weather_App",
       githubUrl: "https://github.com/rithu-parna/Weather_App"
     },
@@ -315,6 +325,7 @@ function App() {
       details: "E-Commerce App is a comprehensive online retail solution that provides users with a seamless shopping journey. Features include intelligent product categorization, advanced search and filtering, a dynamic shopping cart, wishlist functionality, order management, and a streamlined checkout process. Built with performance and user engagement in mind.",
       tech: ["React.js", "Redux", "REST API", "CSS3"],
       themeColor: "#f97316",
+      image: "/ecommerce.png",
       liveUrl: "https://github.com/rithu-parna",
       githubUrl: "https://github.com/rithu-parna"
     }
@@ -710,9 +721,9 @@ function App() {
 
           {/* Projects Grid */}
           <div className="projects-grid">
-            {filteredProjects.map((project) => (
+            {(showAllProjects ? filteredProjects : filteredProjects.slice(0, 3)).map((project) => (
               <div 
-                className="project-card glass-card" 
+                className="project-card glass-card premium-card" 
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
               >
@@ -725,231 +736,127 @@ function App() {
                         <span className="mockup-dot" style={{ backgroundColor: '#10b981' }}></span>
                       </div>
                       <div className="mockup-address">
-                        {project.id === 1 && "savithajewellery.com"}
-                        {project.id === 2 && "torus.scm.internal"}
-                        {project.id === 3 && "thillakkamfancy.in"}
-                        {project.id === 4 && "bookstore.app"}
-                        {project.id === 5 && "homestay.travel"}
-                        {project.id === 6 && "nexusmall.shop"}
-                        {project.id === 7 && "blooddonor.care"}
-                        {project.id === 8 && "chatapp.live"}
-                        {project.id === 9 && "weather.check"}
-                        {project.id === 10 && "ecommerce.store"}
+                        {project.title.toLowerCase().replace(/\s+/g, '')}.com
                       </div>
                     </div>
-                    <div className="mockup-content">
-                      {project.id === 1 && (
-                        <div className="mini-preview ecom-preview">
-                          <div className="mini-item-card">
-                            <span className="mini-item-img">💎</span>
-                            <div className="mini-item-info">
-                              <div className="mini-item-title">Savitha Gold</div>
-                              <div className="mini-item-price">Catalog Live</div>
-                            </div>
-                            <span className="mini-item-btn">Browse</span>
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 2 && (
-                        <div className="mini-preview logistics-preview">
-                          <div className="mini-chart">
-                            <div className="bar" style={{ height: '35%' }}></div>
-                            <div className="bar" style={{ height: '75%' }}></div>
-                            <div className="bar" style={{ height: '55%' }}></div>
-                            <div className="bar" style={{ height: '95%' }}></div>
-                          </div>
-                          <div className="mini-status">
-                            <span className="dot pulse"></span> Torus SCM Monitor
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 3 && (
-                        <div className="mini-preview gallery-preview">
-                          <div className="mini-gallery-grid">
-                            <div className="grid-dot" style={{ background: 'var(--accent-primary)' }}></div>
-                            <div className="grid-dot" style={{ background: '#10b981' }}></div>
-                            <div className="grid-dot" style={{ background: '#3b82f6' }}></div>
-                            <div className="grid-dot" style={{ background: 'var(--accent-secondary)' }}></div>
-                          </div>
-                          <div className="mini-search-bar">Thillakkam Mall...</div>
-                        </div>
-                      )}
-                      {project.id === 4 && (
-                        <div className="mini-preview bookstore-preview">
-                          <div className="mini-bookshelf">
-                            <div className="mini-book" style={{ background: '#f59e0b' }}>📚</div>
-                            <div className="mini-book" style={{ background: '#8b5cf6' }}>📖</div>
-                            <div className="mini-book" style={{ background: '#ef4444' }}>📕</div>
-                            <div className="mini-book" style={{ background: '#10b981' }}>📗</div>
-                          </div>
-                          <div className="mini-search-bar">Search books...</div>
-                        </div>
-                      )}
-                      {project.id === 5 && (
-                        <div className="mini-preview homestay-preview">
-                          <div className="mini-house-card">
-                            <span className="mini-house-icon">🏡</span>
-                            <div className="mini-house-info">
-                              <div className="mini-item-title">Mountain View</div>
-                              <div className="mini-house-rating">⭐ 4.9 · ₹2,500/night</div>
-                            </div>
-                          </div>
-                          <div className="mini-availability">
-                            <span className="dot pulse"></span> Available Now
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 6 && (
-                        <div className="mini-preview nexus-preview">
-                          <div className="mini-mall-grid">
-                            <div className="mini-store-tile" style={{ background: 'rgba(139,92,246,0.2)' }}>👗</div>
-                            <div className="mini-store-tile" style={{ background: 'rgba(6,182,212,0.2)' }}>📱</div>
-                            <div className="mini-store-tile" style={{ background: 'rgba(245,158,11,0.2)' }}>👟</div>
-                            <div className="mini-store-tile" style={{ background: 'rgba(16,185,129,0.2)' }}>🎧</div>
-                          </div>
-                          <div className="mini-status">
-                            <span className="dot pulse"></span> 120+ Vendors Live
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 7 && (
-                        <div className="mini-preview blood-preview">
-                          <div className="mini-blood-drop">
-                            <span className="blood-icon">🩸</span>
-                            <div className="blood-pulse-ring"></div>
-                          </div>
-                          <div className="mini-blood-groups">
-                            <span className="blood-tag">A+</span>
-                            <span className="blood-tag">B+</span>
-                            <span className="blood-tag">O+</span>
-                            <span className="blood-tag">AB+</span>
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 8 && (
-                        <div className="mini-preview chat-preview">
-                          <div className="mini-chat-bubbles">
-                            <div className="chat-bubble sent">Hello! 👋</div>
-                            <div className="chat-bubble received">Hey there! 💬</div>
-                          </div>
-                          <div className="mini-chat-input">
-                            <span>Type a message...</span>
-                            <span className="chat-send-icon">▶</span>
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 9 && (
-                        <div className="mini-preview weather-preview">
-                          <div className="mini-weather-main">
-                            <span className="weather-icon-lg">☀️</span>
-                            <div className="weather-temp">28°C</div>
-                          </div>
-                          <div className="mini-weather-details">
-                            <span>💧 65%</span>
-                            <span>💨 12 km/h</span>
-                          </div>
-                        </div>
-                      )}
-                      {project.id === 10 && (
-                        <div className="mini-preview ecom-app-preview">
-                          <div className="mini-item-card">
-                            <span className="mini-item-img">🛒</span>
-                            <div className="mini-item-info">
-                              <div className="mini-item-title">Top Products</div>
-                              <div className="mini-item-price">Shop Now</div>
-                            </div>
-                            <span className="mini-item-btn">Buy</span>
-                          </div>
-                          <div className="mini-cart-bar">
-                            <span>🛍️ 3 items</span>
-                            <span className="mini-cart-total">₹4,299</span>
-                          </div>
-                        </div>
-                      )}
+                    <div className="mockup-image-container">
+                      <img src={project.image} alt={project.title} className="mockup-img" />
+                      <div className="mockup-overlay">
+                        <span className="view-details-glow">View Architecture</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <span 
-                  className="badge" 
-                  style={{ 
-                    alignSelf: 'flex-start', 
-                    marginBottom: '0.75rem',
-                    color: project.themeColor,
-                    borderColor: `${project.themeColor}33`,
-                    background: `${project.themeColor}11`
-                  }}
-                >
-                  {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
-                </span>
-                <h3 className="project-card-title">{project.title}</h3>
-                <p className="project-card-desc">{project.desc}</p>
-                
-                <div className="project-card-footer">
-                  <span>Explore Architecture</span>
-                  <ChevronRight size={14} className="project-chevron" />
+
+                <div className="project-card-info">
+                  <span className="project-card-tag">{project.tag.toUpperCase()}</span>
+                  <h3 className="project-card-title">{project.title}</h3>
+                  <p className="project-card-desc">{project.desc}</p>
+                  
+                  <div className="project-card-tech">
+                    {project.tech.map((t, idx) => (
+                      <span className="tech-badge" key={idx}>{t}</span>
+                    ))}
+                  </div>
+                  
+                  <div className="project-card-footer">
+                    <span className="explore-link">View Details <ChevronRight size={14} className="project-chevron" /></span>
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="project-card-link-icon"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ArrowUpRight size={18} />
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* View More Button */}
+          {filteredProjects.length > 3 && (
+            <div className="view-more-container">
+              <button 
+                className="btn btn-primary view-more-btn"
+                onClick={() => {
+                  setShowAllProjects(!showAllProjects);
+                  if (showAllProjects) {
+                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                {showAllProjects ? 'Show Less Projects' : 'View All Projects'}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Project Modal Detail Overlay */}
       {selectedProject && (
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content premium-modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close-btn" onClick={() => setSelectedProject(null)}>
-              <X size={18} />
+              <X size={20} />
             </button>
-            <div className="modal-hero">
-              <div className="modal-hero-glow" style={{ background: `radial-gradient(circle, ${selectedProject.themeColor}33 0%, transparent 70%)` }}></div>
-              <div 
-                style={{
-                  width: '90px',
-                  height: '90px',
-                  borderRadius: '24px',
-                  background: selectedProject.themeColor,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontSize: '2.5rem',
-                  fontWeight: 800,
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                  zIndex: 2
-                }}
-              >
-                {selectedProject.title.charAt(0)}
-              </div>
-            </div>
-            <div className="modal-body">
-              <span className="badge" style={{ marginBottom: '1rem', color: selectedProject.themeColor, borderColor: `${selectedProject.themeColor}44`, background: `${selectedProject.themeColor}11` }}>
-                {selectedProject.tag}
-              </span>
-              <h2 className="modal-title">{selectedProject.title}</h2>
-              
-              <div className="modal-meta">
-                <span style={{ color: 'var(--text-muted)' }}>Role: Product Engineer</span>
-                <span style={{ color: 'var(--text-muted)' }}>•</span>
-                <span style={{ color: 'var(--text-muted)' }}>Category: {selectedProject.category}</span>
-              </div>
-              
-              <p className="modal-desc">{selectedProject.details}</p>
-
-              <h4 className="modal-section-title">Architectural Stack</h4>
-              <div className="modal-tech-list">
-                {selectedProject.tech.map((t, idx) => (
-                  <span className="badge badge-cyan" key={idx}>{t}</span>
-                ))}
+            
+            <div className="modal-grid">
+              {/* Left Column: Interactive Screenshot Showcase */}
+              <div className="modal-preview-col">
+                <div className="modal-browser-mockup">
+                  <div className="browser-header">
+                    <div className="mockup-dots">
+                      <span className="mockup-dot" style={{ backgroundColor: '#ef4444' }}></span>
+                      <span className="mockup-dot" style={{ backgroundColor: '#eab308' }}></span>
+                      <span className="mockup-dot" style={{ backgroundColor: '#10b981' }}></span>
+                    </div>
+                    <div className="browser-address">
+                      https://{selectedProject.title.toLowerCase().replace(/\s+/g, '')}.com/showcase
+                    </div>
+                  </div>
+                  <div className="browser-body">
+                    <img src={selectedProject.image} alt={selectedProject.title} className="modal-screenshot" />
+                  </div>
+                </div>
               </div>
 
-              <div className="modal-links">
-                <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                  Launch App <ExternalLink size={16} />
-                </a>
-                <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                  Source Code <Github size={16} />
-                </a>
+              {/* Right Column: Premium Details */}
+              <div className="modal-info-col">
+                <div className="modal-info-header">
+                  <span className="modal-badge" style={{ color: selectedProject.themeColor, borderColor: `${selectedProject.themeColor}33`, background: `${selectedProject.themeColor}11` }}>
+                    {selectedProject.tag}
+                  </span>
+                  <h2 className="modal-title">{selectedProject.title}</h2>
+                  <div className="modal-meta-row">
+                    <span>Role: Lead Product Engineer</span>
+                    <span className="bullet">•</span>
+                    <span>Category: {selectedProject.category.toUpperCase()}</span>
+                  </div>
+                </div>
+
+                <div className="modal-info-body">
+                  <h4 className="info-section-title">PROJECT OVERVIEW</h4>
+                  <p className="modal-desc-text">{selectedProject.details}</p>
+
+                  <h4 className="info-section-title">ENGINEERING STACK</h4>
+                  <div className="modal-tech-grid">
+                    {selectedProject.tech.map((t, idx) => (
+                      <span className="modal-tech-chip" key={idx} style={{ borderLeft: `3px solid ${selectedProject.themeColor}` }}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="modal-info-footer">
+                  <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary modal-action-btn">
+                    Launch Application <ExternalLink size={16} />
+                  </a>
+                  <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary modal-action-btn">
+                    Explore Codebase <Github size={16} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
