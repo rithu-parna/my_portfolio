@@ -233,6 +233,90 @@ function App() {
       themeColor: "#10b981",
       liveUrl: "https://thillakkamfancy.in/",
       githubUrl: "https://github.com/rithu-parna"
+    },
+    {
+      id: 4,
+      title: "Book Store",
+      category: "fullstack",
+      tag: "Online Book Shop",
+      desc: "A feature-rich web app to browse, search, and purchase books with a streamlined cart system and user-friendly interface.",
+      details: "Book Store is a complete bookshop web application that allows users to explore a curated library of books, search by title or author, add items to a cart, and proceed through a smooth checkout experience. Built with React.js and modern UI patterns for a seamless reading-commerce experience.",
+      tech: ["React.js", "JavaScript (ES6+)", "CSS3", "REST API"],
+      themeColor: "#f59e0b",
+      liveUrl: "https://github.com/rithu-parna/Book_Store",
+      githubUrl: "https://github.com/rithu-parna/Book_Store"
+    },
+    {
+      id: 5,
+      title: "Home Stay",
+      category: "fullstack",
+      tag: "Booking Platform",
+      desc: "A modern web app for booking comfortable homestays with easy browsing, advanced search, and seamless reservation features.",
+      details: "Home Stay is a full-featured accommodation booking platform. Users can discover and book comfortable homestays with detailed property listings, an advanced search and filter system, image galleries, and a complete reservation flow. Designed with mobile-first responsiveness and an inviting visual aesthetic.",
+      tech: ["React.js", "Node.js", "CSS3", "REST API"],
+      themeColor: "#10b981",
+      liveUrl: "https://github.com/rithu-parna/home_stay_web_app",
+      githubUrl: "https://github.com/rithu-parna/home_stay_web_app"
+    },
+    {
+      id: 6,
+      title: "Nexus Mall",
+      category: "fullstack",
+      tag: "Multi-Vendor Marketplace",
+      desc: "A multi-vendor shopping platform where users can buy and sell products with secure payments, order tracking, and vendor management.",
+      details: "Nexus Mall is a comprehensive multi-vendor e-commerce marketplace. It empowers sellers to manage their storefronts while providing buyers with a unified shopping experience. Features include secure payment integration, real-time order tracking, vendor dashboards, product reviews, and inventory management.",
+      tech: ["React.js", "Redux", "Node.js", "Payment Gateway"],
+      themeColor: "#8b5cf6",
+      liveUrl: "https://github.com/rithu-parna",
+      githubUrl: "https://github.com/rithu-parna"
+    },
+    {
+      id: 7,
+      title: "Blood Donor App",
+      category: "apps",
+      tag: "Community Health App",
+      desc: "A life-saving application connecting blood donors with people in need, with search by blood group and location.",
+      details: "Blood Donor App is a community-driven application designed to bridge the gap between blood donors and recipients during emergencies. Users can register as donors, search for nearby donors by blood group and location, send urgent requests, and manage donation history. Built for speed and accessibility when every second counts.",
+      tech: ["React.js", "JavaScript", "Geolocation API", "CSS3"],
+      themeColor: "#ef4444",
+      liveUrl: "https://github.com/rithu-parna/Blood_Donar_App",
+      githubUrl: "https://github.com/rithu-parna/Blood_Donar_App"
+    },
+    {
+      id: 8,
+      title: "Chat App",
+      category: "apps",
+      tag: "Real-Time Messaging",
+      desc: "A real-time chat application for instant communication with private and group chats, built for fast and secure messaging.",
+      details: "Chat App is a modern real-time messaging platform enabling users to communicate instantly through private and group conversations. Features include real-time message delivery, typing indicators, online status, media sharing, and message history. Built with WebSocket technology for lightning-fast, secure communication.",
+      tech: ["React.js", "Socket.io", "Node.js", "Express"],
+      themeColor: "#3b82f6",
+      liveUrl: "https://github.com/rithu-parna",
+      githubUrl: "https://github.com/rithu-parna"
+    },
+    {
+      id: 9,
+      title: "Weather App",
+      category: "apps",
+      tag: "Weather Dashboard",
+      desc: "A sleek application showing real-time weather updates, temperature, and conditions for any location using live APIs.",
+      details: "Weather App delivers real-time meteorological data with an elegant, intuitive interface. Users can search any city worldwide to view current temperature, humidity, wind speed, weather conditions, and multi-day forecasts. Powered by live weather data APIs with beautiful dynamic backgrounds that reflect current conditions.",
+      tech: ["React.js", "Weather API", "JavaScript", "CSS3"],
+      themeColor: "#06b6d4",
+      liveUrl: "https://github.com/rithu-parna/Weather_App",
+      githubUrl: "https://github.com/rithu-parna/Weather_App"
+    },
+    {
+      id: 10,
+      title: "E-Commerce App",
+      category: "fullstack",
+      tag: "Shopping Platform",
+      desc: "A full-featured online shopping application with product browsing, cart management, and smooth order placement experience.",
+      details: "E-Commerce App is a comprehensive online retail solution that provides users with a seamless shopping journey. Features include intelligent product categorization, advanced search and filtering, a dynamic shopping cart, wishlist functionality, order management, and a streamlined checkout process. Built with performance and user engagement in mind.",
+      tech: ["React.js", "Redux", "REST API", "CSS3"],
+      themeColor: "#f97316",
+      liveUrl: "https://github.com/rithu-parna",
+      githubUrl: "https://github.com/rithu-parna"
     }
   ];
 
@@ -421,7 +505,7 @@ function App() {
                         &nbsp;&nbsp;role: <span className="code-string">"Product Engineer"</span>,<br />
                         &nbsp;&nbsp;philosophy: <span className="code-string">"Scalable architectures & API Integration"</span>,<br />
                         &nbsp;&nbsp;coreStack: [<span className="code-string">"React.js"</span>, <span className="code-string">"Redux"</span>, <span className="code-string">"JavaScript"</span>],<br />
-                        &nbsp;&nbsp;location: <span className="code-string">"Bangalore, India"</span>,<br />
+                        &nbsp;&nbsp;location: <span className="code-string">"Kozhikode, Kerala, India"</span>,<br />
                         &nbsp;&nbsp;experience: <span className="code-string">"3+ Years"</span><br />
                         &#125;;<br /><br />
                         <span className="code-comment">// Transforming complex requirements into UI</span><br />
@@ -612,7 +696,7 @@ function App() {
 
           {/* Filters */}
           <ul className="portfolio-filters">
-            {['all', 'react', 'tools', 'creative'].map((cat) => (
+            {['all', 'react', 'fullstack', 'apps', 'tools', 'creative'].map((cat) => (
               <li key={cat}>
                 <button 
                   className={`filter-btn ${projectFilter === cat ? 'active' : ''}`}
@@ -635,9 +719,23 @@ function App() {
                 <div className="project-media">
                   <div className="project-mockup">
                     <div className="mockup-header">
-                      <span className="mockup-dot" style={{ backgroundColor: '#ef4444' }}></span>
-                      <span className="mockup-dot" style={{ backgroundColor: '#eab308' }}></span>
-                      <span className="mockup-dot" style={{ backgroundColor: '#10b981' }}></span>
+                      <div className="mockup-dots">
+                        <span className="mockup-dot" style={{ backgroundColor: '#ef4444' }}></span>
+                        <span className="mockup-dot" style={{ backgroundColor: '#eab308' }}></span>
+                        <span className="mockup-dot" style={{ backgroundColor: '#10b981' }}></span>
+                      </div>
+                      <div className="mockup-address">
+                        {project.id === 1 && "savithajewellery.com"}
+                        {project.id === 2 && "torus.scm.internal"}
+                        {project.id === 3 && "thillakkamfancy.in"}
+                        {project.id === 4 && "bookstore.app"}
+                        {project.id === 5 && "homestay.travel"}
+                        {project.id === 6 && "nexusmall.shop"}
+                        {project.id === 7 && "blooddonor.care"}
+                        {project.id === 8 && "chatapp.live"}
+                        {project.id === 9 && "weather.check"}
+                        {project.id === 10 && "ecommerce.store"}
+                      </div>
                     </div>
                     <div className="mockup-content">
                       {project.id === 1 && (
@@ -676,18 +774,119 @@ function App() {
                           <div className="mini-search-bar">Thillakkam Mall...</div>
                         </div>
                       )}
+                      {project.id === 4 && (
+                        <div className="mini-preview bookstore-preview">
+                          <div className="mini-bookshelf">
+                            <div className="mini-book" style={{ background: '#f59e0b' }}>📚</div>
+                            <div className="mini-book" style={{ background: '#8b5cf6' }}>📖</div>
+                            <div className="mini-book" style={{ background: '#ef4444' }}>📕</div>
+                            <div className="mini-book" style={{ background: '#10b981' }}>📗</div>
+                          </div>
+                          <div className="mini-search-bar">Search books...</div>
+                        </div>
+                      )}
+                      {project.id === 5 && (
+                        <div className="mini-preview homestay-preview">
+                          <div className="mini-house-card">
+                            <span className="mini-house-icon">🏡</span>
+                            <div className="mini-house-info">
+                              <div className="mini-item-title">Mountain View</div>
+                              <div className="mini-house-rating">⭐ 4.9 · ₹2,500/night</div>
+                            </div>
+                          </div>
+                          <div className="mini-availability">
+                            <span className="dot pulse"></span> Available Now
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 6 && (
+                        <div className="mini-preview nexus-preview">
+                          <div className="mini-mall-grid">
+                            <div className="mini-store-tile" style={{ background: 'rgba(139,92,246,0.2)' }}>👗</div>
+                            <div className="mini-store-tile" style={{ background: 'rgba(6,182,212,0.2)' }}>📱</div>
+                            <div className="mini-store-tile" style={{ background: 'rgba(245,158,11,0.2)' }}>👟</div>
+                            <div className="mini-store-tile" style={{ background: 'rgba(16,185,129,0.2)' }}>🎧</div>
+                          </div>
+                          <div className="mini-status">
+                            <span className="dot pulse"></span> 120+ Vendors Live
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 7 && (
+                        <div className="mini-preview blood-preview">
+                          <div className="mini-blood-drop">
+                            <span className="blood-icon">🩸</span>
+                            <div className="blood-pulse-ring"></div>
+                          </div>
+                          <div className="mini-blood-groups">
+                            <span className="blood-tag">A+</span>
+                            <span className="blood-tag">B+</span>
+                            <span className="blood-tag">O+</span>
+                            <span className="blood-tag">AB+</span>
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 8 && (
+                        <div className="mini-preview chat-preview">
+                          <div className="mini-chat-bubbles">
+                            <div className="chat-bubble sent">Hello! 👋</div>
+                            <div className="chat-bubble received">Hey there! 💬</div>
+                          </div>
+                          <div className="mini-chat-input">
+                            <span>Type a message...</span>
+                            <span className="chat-send-icon">▶</span>
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 9 && (
+                        <div className="mini-preview weather-preview">
+                          <div className="mini-weather-main">
+                            <span className="weather-icon-lg">☀️</span>
+                            <div className="weather-temp">28°C</div>
+                          </div>
+                          <div className="mini-weather-details">
+                            <span>💧 65%</span>
+                            <span>💨 12 km/h</span>
+                          </div>
+                        </div>
+                      )}
+                      {project.id === 10 && (
+                        <div className="mini-preview ecom-app-preview">
+                          <div className="mini-item-card">
+                            <span className="mini-item-img">🛒</span>
+                            <div className="mini-item-info">
+                              <div className="mini-item-title">Top Products</div>
+                              <div className="mini-item-price">Shop Now</div>
+                            </div>
+                            <span className="mini-item-btn">Buy</span>
+                          </div>
+                          <div className="mini-cart-bar">
+                            <span>🛍️ 3 items</span>
+                            <span className="mini-cart-total">₹4,299</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-                <span className="badge badge-cyan" style={{ alignSelf: 'flex-start', marginBottom: '0.75rem' }}>
-                  {project.category}
+                <span 
+                  className="badge" 
+                  style={{ 
+                    alignSelf: 'flex-start', 
+                    marginBottom: '0.75rem',
+                    color: project.themeColor,
+                    borderColor: `${project.themeColor}33`,
+                    background: `${project.themeColor}11`
+                  }}
+                >
+                  {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
                 </span>
                 <h3 className="project-card-title">{project.title}</h3>
                 <p className="project-card-desc">{project.desc}</p>
                 
                 <div className="project-card-footer">
                   <span>Explore Architecture</span>
-                  <ChevronRight size={14} />
+                  <ChevronRight size={14} className="project-chevron" />
                 </div>
               </div>
             ))}
