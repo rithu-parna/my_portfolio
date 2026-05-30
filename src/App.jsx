@@ -969,9 +969,7 @@ function App() {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <a href="#home" className="logo">
-              Rithuparna A C<span className="logo-dot"></span>
-            </a>
+
             <p className="footer-text">
               © {new Date().getFullYear()} Rithuparna AC. All rights reserved. Made with React.
             </p>

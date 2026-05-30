@@ -1309,16 +1309,16 @@
 .footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--card-border);
-  padding: 3rem 0;
+  padding: 1.5rem 0;
   text-align: center;
 }
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media (max-width: 768px) {
