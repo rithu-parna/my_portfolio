@@ -131,6 +131,28 @@ function App() {
   const roles = ["Product Engineer", "React.js Developer", "Frontend Developer", "API Integration Specialist"];
   const typingRole = useTypewriter(roles);
 
+  // IntersectionObserver for scroll animations
+  useEffect(() => {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    elements.forEach((el) => revealObserver.observe(el));
+
+    return () => {
+      elements.forEach((el) => revealObserver.unobserve(el));
+    };
+  }, [showAllProjects]);
+
   // Manage Scroll Header & Spy
   useEffect(() => {
     const handleScroll = () => {
@@ -466,21 +488,21 @@ function App() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-content">
-              <div className="hero-tagline">
+              <div className="hero-tagline animate-on-load duration-800">
                 <span className="badge">Available for Work</span>
               </div>
-              <h1 className="hero-title">
+              <h1 className="hero-title animate-on-load duration-800 delay-100">
                 Crafting Digital <br />
                 <span className="gradient-text">Experiences</span>
               </h1>
-              <div className="hero-subtitle">
+              <div className="hero-subtitle animate-on-load duration-800 delay-200">
                 I'm a <span className="gradient-text">{typingRole}</span>
                 <span className="cursor">|</span>
               </div>
-              <p className="hero-desc">
+              <p className="hero-desc animate-on-load duration-800 delay-300">
                 Product Engineer with 3+ years of experience building responsive, scalable web applications using React.js, Redux, and JavaScript. Experienced in developing enterprise supply chain modules, logistics panels, and commercial e-commerce storefronts.
               </p>
-              <div className="hero-buttons">
+              <div className="hero-buttons animate-on-load duration-800 delay-400">
                 <a href="#projects" className="btn btn-primary">
                   View Projects <ArrowUpRight size={16} />
                 </a>
@@ -490,7 +512,7 @@ function App() {
               </div>
             </div>
 
-            <div className="hero-visual">
+            <div className="hero-visual animate-perspective duration-1000 delay-500">
               <div className="terminal-box animate-float">
                 <div className="terminal-header">
                   <div className="terminal-dots">
@@ -558,20 +580,20 @@ function App() {
       {/* Stats Section */}
       <section className="stats-section">
         <div className="container">
-          <div className="stats-grid">
-            <div className="stat-card">
+          <div className="stats-grid reveal-on-scroll reveal-stagger">
+            <div className="stat-card reveal-flip">
               <div className="stat-number">3+</div>
               <div className="stat-label">Years of Experience</div>
             </div>
-            <div className="stat-card">
+            <div className="stat-card reveal-flip">
               <div className="stat-number">15+</div>
               <div className="stat-label">Projects Completed</div>
             </div>
-            <div className="stat-card">
+            <div className="stat-card reveal-flip">
               <div className="stat-number">1k+</div>
               <div className="stat-label">GitHub Contributions</div>
             </div>
-            <div className="stat-card">
+            <div className="stat-card reveal-flip">
               <div className="stat-number">99%</div>
               <div className="stat-label">Performance Core Web Vitals</div>
             </div>
@@ -591,7 +613,7 @@ function App() {
           </div>
 
           <div className="about-grid">
-            <div className="about-left">
+            <div className="about-left reveal-on-scroll reveal-slide-left">
               <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>
                 I am a Product Engineer and Frontend Developer with a strong passion for building responsive, scalable web applications using React.js, Redux, and modern state management. With 3 years of hands-on experience, I focus on integrating RESTful APIs and optimizing cross-device performance.
               </p>
@@ -599,13 +621,13 @@ function App() {
                 I believe in creating highly functional and accessible frontend interfaces. The details matter—from modular component reuse and clean code architectures down to state flows and responsive user journeys that make an application feel smooth and intuitive.
               </p>
               
-              <div className="about-features">
-                <div className="feature-card">
+              <div className="about-features reveal-on-scroll reveal-stagger">
+                <div className="feature-card reveal-scale-in">
                   <div className="feature-icon"><Layers size={24} /></div>
                   <h4 className="feature-title">Modular Structure</h4>
                   <p className="feature-desc">Building dry, highly reusable component abstractions.</p>
                 </div>
-                <div className="feature-card">
+                <div className="feature-card reveal-scale-in">
                   <div className="feature-icon"><Sparkles size={24} /></div>
                   <h4 className="feature-title">REST & API Flow</h4>
                   <p className="feature-desc">Integrating high-performance asynchronous data endpoints.</p>
@@ -613,13 +635,13 @@ function App() {
               </div>
             </div>
 
-            <div className="about-right">
+            <div className="about-right reveal-on-scroll reveal-slide-right">
               <h3 style={{ fontSize: '1.4rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span className="logo-dot" style={{ background: 'var(--accent-primary)' }}></span> History & Education
               </h3>
               
               <div className="timeline">
-                <div className="timeline-item">
+                <div className="timeline-item reveal-on-scroll">
                   <div className="timeline-dot"></div>
                   <div className="timeline-header-info">
                     <span className="timeline-date">May 2023 - Present</span>
@@ -631,7 +653,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="timeline-item">
+                <div className="timeline-item reveal-on-scroll">
                   <div className="timeline-dot"></div>
                   <div className="timeline-header-info">
                     <span className="timeline-date">Dec 2022 - May 2023</span>
@@ -643,7 +665,7 @@ function App() {
                   </p>
                 </div>
 
-                <div className="timeline-item">
+                <div className="timeline-item reveal-on-scroll">
                   <div className="timeline-dot"></div>
                   <div className="timeline-header-info">
                     <span className="timeline-date">2019 - 2022</span>
@@ -671,7 +693,7 @@ function App() {
             </p>
           </div>
 
-          <div className="skills-grid">
+          <div className="skills-grid reveal-on-scroll reveal-fade-in reveal-stagger">
             {skillCategories.map((category, index) => (
               <div className="skills-category glass-card" key={index}>
                 <h3>
@@ -727,11 +749,10 @@ function App() {
             ))}
           </ul>
 
-          {/* Projects Grid */}
-          <div className="projects-grid">
+          <div className="projects-grid reveal-on-scroll reveal-stagger">
             {(showAllProjects ? filteredProjects : filteredProjects.slice(0, 3)).map((project) => (
               <div 
-                className="project-card glass-card premium-card" 
+                className="project-card glass-card premium-card reveal-project-card" 
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
               >
@@ -884,7 +905,7 @@ function App() {
 
           <div className="contact-grid">
             {/* Left Column: Interactive Contact Dashboard */}
-            <div className="contact-info-panel">
+            <div className="contact-info-panel reveal-on-scroll reveal-slide-left">
               {/* Availability Indicator */}
               <div className="availability-card glass-card">
                 <div className="availability-pulse">
@@ -965,7 +986,7 @@ function App() {
             </div>
 
             {/* Right Column: Premium Contact Form */}
-            <div className="contact-form-panel glass-card">
+            <div className="contact-form-panel glass-card reveal-on-scroll reveal-slide-right">
               <form className="premium-contact-form" onSubmit={handleFormSubmit}>
                 {/* Floating Group: Name */}
                 <div className={`form-floating-group ${formState.name ? 'has-value' : ''}`}>

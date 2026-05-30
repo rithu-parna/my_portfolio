@@ -2512,3 +2512,222 @@
 [data-theme="light"] ::-webkit-scrollbar-track {
   background: #f0f2f5;
 }
+
+/* =====================================================
+   PREMIUM ANIMATION SYSTEM
+   ===================================================== */
+/* [ignoring loop detection] */
+
+/* Keyframe animations for Hero load */
+@keyframes fadeUpLoad {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes perspectiveLoad {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateY(35px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1);
+  }
+}
+
+.animate-on-load {
+  opacity: 0;
+  animation-name: fadeUpLoad;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-perspective {
+  opacity: 0;
+  animation-name: perspectiveLoad;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Duration Utility Helpers */
+.duration-800 {
+  animation-duration: 800ms;
+}
+.duration-1000 {
+  animation-duration: 1000ms;
+}
+
+/* Delay Utility Helpers */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Scroll Reveal Base Classes */
+.reveal-on-scroll {
+  will-change: transform, opacity;
+}
+
+/* Reveal style A: Fade In Reveal */
+.reveal-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-fade-in.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reveal style B: Slide Left Reveal */
+.reveal-slide-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-slide-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reveal style C: Slide Right Reveal */
+.reveal-slide-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-slide-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reveal style D: Perspective 3D Tilt Reveal */
+.reveal-perspective {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateY(40px) scale(0.96);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-perspective.revealed {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1);
+}
+
+/* Reveal style E: Scale In Reveal */
+.reveal-scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale-in.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Reveal style F: 3D Flip Card Reveal */
+.reveal-flip {
+  opacity: 0;
+  transform: perspective(800px) rotateX(-16deg) translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-flip.revealed {
+  opacity: 1;
+  transform: perspective(800px) rotateX(0) translateY(0);
+}
+
+/* Reveal style G: Browser Project Card Reveal */
+.reveal-project-card {
+  opacity: 0;
+  transform: translateY(35px) scale(0.98);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-project-card.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Timeline Custom Chain Animation */
+.timeline-item .timeline-dot {
+  transform: scale(0);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.timeline-item.revealed .timeline-dot {
+  transform: scale(1);
+}
+
+.timeline-item .timeline-header-info,
+.timeline-item .timeline-company,
+.timeline-item .timeline-desc {
+  opacity: 0;
+  transform: translateX(18px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-item.revealed .timeline-header-info {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.1s;
+}
+
+.timeline-item.revealed .timeline-company {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.2s;
+}
+
+.timeline-item.revealed .timeline-desc {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
+
+/* Skill Filling Progress Bars Shimmer Effect */
+.skill-bar-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transform: translateX(-100%);
+  animation: skillBarShimmer 2.5s infinite;
+}
+
+@keyframes skillBarShimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Stagger List Effects */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: transform, opacity;
+}
+
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: none;
+  /* Set a baseline transition for cascading children styles */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.15s; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.25s; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.35s; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.45s; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.55s; }
