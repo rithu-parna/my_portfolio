@@ -616,7 +616,7 @@ function App() {
           <div className="about-grid">
             <div className="about-image-side reveal-on-scroll">
               <div className="about-image-wrapper">
-                <img src="/about_developer.png" alt="Rithuparna A C" className="about-profile-img" />
+                <img src="/about_developer.jpeg" alt="Rithuparna A C" className="about-profile-img" />
                 <div className="about-image-glow"></div>
               </div>
             </div>
