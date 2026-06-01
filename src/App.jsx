@@ -996,6 +996,7 @@ function App() {
           </motion.ul>
 
           <motion.div 
+            key={`${projectFilter}-${showAllProjects}`}
             className="projects-grid"
             initial="hidden"
             whileInView="visible"
