@@ -633,7 +633,7 @@ function App() {
                   <strong>Email:</strong> <a href="mailto:rithu7025@gmail.com">rithu7025@gmail.com</a>
                 </div>
                 <div className="contact-detail-row">
-                  <strong>Address:</strong> <span>Sreenadhanam House, Thendankkandy Meethal, Perambra post, Kozhikode, Pin- 673525</span>
+                  <strong>Address:</strong> <span>Kizhakke Vellamthatta House, Payyoli post, Kozhikode, Pin- 673522</span>
                 </div>
                 <div className="contact-detail-row">
                   <strong>Phone:</strong> <a href="tel:+918086710182">+91 8086710182</a>
