@@ -6,7 +6,7 @@ export default function About() {
 
   const ResumeDownload = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
+    link.href = "/Rithuparna_Front_End_Developer.pdf";
     link.download = "Frontend Developer Rithuparna_AC.pdf";
     document.body.appendChild(link);
     link.click();
