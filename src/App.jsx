@@ -17,6 +17,7 @@ import {
   MapPin,
   Phone,
   ChevronRight,
+  ChevronDown,
   Copy,
   Download,
   Calendar,
@@ -876,7 +877,7 @@ function App() {
           {filteredProjects.length > 3 && (
             <div className="view-more-container">
               <button
-                className="btn btn-primary view-more-btn"
+                className="view-more-btn"
                 onClick={() => {
                   setShowAllProjects(!showAllProjects);
                   if (showAllProjects) {
@@ -884,7 +885,11 @@ function App() {
                   }
                 }}
               >
-                {showAllProjects ? 'Show Less Projects' : 'View All Projects'}
+                <span>{showAllProjects ? 'View Less' : 'View All'}</span>
+                <ChevronDown 
+                  size={14} 
+                  className={`view-more-icon ${showAllProjects ? 'rotated' : ''}`} 
+                />
               </button>
             </div>
           )}

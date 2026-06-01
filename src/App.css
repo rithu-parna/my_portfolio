@@ -950,24 +950,37 @@
 }
 
 .view-more-btn {
-  padding: 0.75rem 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.6rem;
   border-radius: 100px;
+  font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.05em;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-  border: none;
-  color: #fff;
-  box-shadow: 0 4px 18px var(--accent-glow);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  margin-bottom: -12px;
   cursor: pointer;
   transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
 .view-more-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px var(--accent-glow);
-  filter: brightness(1.1);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+}
+
+.view-more-icon {
+  transition: transform var(--transition-normal);
+}
+
+.view-more-icon.rotated {
+  transform: rotate(180deg);
 }
 
 /* Premium Split-Screen Modal Overlay */
