@@ -2731,3 +2731,79 @@
 .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.35s; }
 .reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.45s; }
 .reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.55s; }
+
+/* =====================================================
+   MOBILE RESPONSIVE OVERRIDES (SCROLL & TYPOGRAPHY)
+   ===================================================== */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .portfolio-app {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Scale down text elements for mobile screens */
+  .hero-title {
+    font-size: 2.2rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem !important;
+    min-height: 1.8rem !important;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .logo {
+    font-size: 1.2rem !important;
+  }
+
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  .stat-number {
+    font-size: 2.2rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.8rem !important;
+  }
+
+  /* Disable horizontal slide-reveals on mobile to eliminate side-scrolling wobble */
+  .reveal-slide-left {
+    transform: translateY(15px) !important;
+  }
+
+  .reveal-slide-right {
+    transform: translateY(15px) !important;
+  }
+
+  .timeline-item .timeline-header-info,
+  .timeline-item .timeline-company,
+  .timeline-item .timeline-desc {
+    transform: translateY(10px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.9rem !important;
+  }
+  .hero-subtitle {
+    font-size: 1.15rem !important;
+  }
+}
+
