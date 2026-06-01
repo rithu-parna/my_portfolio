@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Terminal, ArrowUpRight } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
 
@@ -24,7 +24,7 @@ export default function Hero() {
               <span className="gradient-text">Experiences</span>
             </h1>
             <div className="hero-subtitle animate-on-load duration-800 delay-200">
-              I'm a <span className="gradient-text">{typingRole}</span>
+              I&apos;m a <span className="gradient-text">{typingRole}</span>
               <span className="cursor">|</span>
             </div>
             <p className="hero-desc animate-on-load duration-800 delay-300">
@@ -70,16 +70,16 @@ export default function Hero() {
                   <pre className="terminal-code">
                     <code>
                       <span className="code-keyword">const</span> developer = &#123;<br />
-                      &nbsp;&nbsp;name: <span className="code-string">"Rithuparna AC"</span>,<br />
-                      &nbsp;&nbsp;role: <span className="code-string">"Product Engineer"</span>,<br />
-                      &nbsp;&nbsp;philosophy: <span className="code-string">"Scalable architectures & API Integration"</span>,<br />
-                      &nbsp;&nbsp;coreStack: [<span className="code-string">"React.js"</span>, <span className="code-string">"Redux"</span>, <span className="code-string">"JavaScript"</span>],<br />
-                      &nbsp;&nbsp;location: <span className="code-string">"Kozhikode, Kerala, India"</span>,<br />
-                      &nbsp;&nbsp;experience: <span className="code-string">"3+ Years"</span><br />
+                      &nbsp;&nbsp;name: <span className="code-string">&quot;Rithuparna AC&quot;</span>,<br />
+                      &nbsp;&nbsp;role: <span className="code-string">&quot;Product Engineer&quot;</span>,<br />
+                      &nbsp;&nbsp;philosophy: <span className="code-string">&quot;Scalable architectures &amp; API Integration&quot;</span>,<br />
+                      &nbsp;&nbsp;coreStack: [<span className="code-string">&quot;React.js&quot;</span>, <span className="code-string">&quot;Redux&quot;</span>, <span className="code-string">&quot;JavaScript&quot;</span>],<br />
+                      &nbsp;&nbsp;location: <span className="code-string">&quot;Kozhikode, Kerala, India&quot;</span>,<br />
+                      &nbsp;&nbsp;experience: <span className="code-string">&quot;3+ Years&quot;</span><br />
                       &#125;;<br /><br />
-                      <span className="code-comment">// Transforming complex requirements into UI</span><br />
+                      <span className="code-comment">{"// Transforming complex requirements into UI"}</span><br />
                       <span className="code-keyword">function</span> <span className="code-function">init</span>() &#123;<br />
-                      &nbsp;&nbsp;console.log(<span className="code-string">"Developing scalable supply chain modules..."</span>);<br />
+                      &nbsp;&nbsp;console.log(<span className="code-string">&quot;Developing scalable supply chain modules...&quot;</span>);<br />
                       &#125;<br />
                       <span className="code-function">init</span>();
                     </code>
@@ -88,12 +88,12 @@ export default function Hero() {
                   <pre className="terminal-code">
                     <code>
                       &#123;<br />
-                      &nbsp;&nbsp;<span className="code-variable">"technologies"</span>: &#123;<br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-variable">"frontend"</span>: [<span className="code-string">"React.js"</span>, <span className="code-string">"Redux"</span>, <span className="code-string">"Bootstrap"</span>, <span className="code-string">"MUI"</span>],<br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-variable">"backend"</span>: [<span className="code-string">"Python"</span>, <span className="code-string">"Django"</span>, <span className="code-string">"MySQL"</span>, <span className="code-string">"Node.js"</span>],<br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-variable">"tools"</span>: [<span className="code-string">"Git"</span>, <span className="code-string">"GitHub"</span>, <span className="code-string">"Postman"</span>, <span className="code-string">"npm"</span>]<br />
+                      &nbsp;&nbsp;<span className="code-variable">&quot;technologies&quot;</span>: &#123;<br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-variable">&quot;frontend&quot;</span>: [<span className="code-string">&quot;React.js&quot;</span>, <span className="code-string">&quot;Redux&quot;</span>, <span className="code-string">&quot;Bootstrap&quot;</span>, <span className="code-string">&quot;MUI&quot;</span>],<br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-variable">&quot;backend&quot;</span>: [<span className="code-string">&quot;Python&quot;</span>, <span className="code-string">&quot;Django&quot;</span>, <span className="code-string">&quot;MySQL&quot;</span>, <span className="code-string">&quot;Node.js&quot;</span>],<br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-variable">&quot;tools&quot;</span>: [<span className="code-string">&quot;Git&quot;</span>, <span className="code-string">&quot;GitHub&quot;</span>, <span className="code-string">&quot;Postman&quot;</span>, <span className="code-string">&quot;npm&quot;</span>]<br />
                       &nbsp;&nbsp;&#125;,<br />
-                      &nbsp;&nbsp;<span className="code-variable">"attributes"</span>: [<span className="code-string">"Collaborative"</span>, <span className="code-string">"Responsive"</span>, <span className="code-string">"Analytical"</span>]<br />
+                      &nbsp;&nbsp;<span className="code-variable">&quot;attributes&quot;</span>: [<span className="code-string">&quot;Collaborative&quot;</span>, <span className="code-string">&quot;Responsive&quot;</span>, <span className="code-string">&quot;Analytical&quot;</span>]<br />
                       &#125;
                     </code>
                   </pre>

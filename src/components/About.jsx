@@ -1,8 +1,19 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Award, Users, Download } from 'lucide-react';
 
 export default function About() {
+
+
+  const ResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Frontend Developer Rithuparna_AC.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 35 },
     visible: {
@@ -114,8 +125,9 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about-actions-row">
-              <a href="/resume.pdf" download="Rithuparna_AC_Resume.pdf" className="btn btn-primary">
+            <div className="about-actions-row" onClick={ResumeDownload}
+            >
+              <a className="btn btn-primary">
                 Download Resume <Download size={16} />
               </a>
             </div>

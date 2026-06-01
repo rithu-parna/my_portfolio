@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Copy, Send, CheckCircle } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
@@ -87,7 +87,7 @@ export default function Contact() {
           variants={fadeInUp}
         >
           <span className="section-subtitle">Collaborate</span>
-          <h2 className="section-title">Let's Build Something Great</h2>
+          <h2 className="section-title">Let&apos;s Build Something Great</h2>
           <p className="section-desc">
             Have a complex frontend problem, require premium React development, or want to discuss full-time roles? Reach out today.
           </p>

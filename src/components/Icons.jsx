@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Github = ({ size = 24, ...props }) => (
   <svg
@@ -18,6 +18,10 @@ export const Github = ({ size = 24, ...props }) => (
   </svg>
 );
 
+Github.propTypes = {
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+};
+
 export const Linkedin = ({ size = 24, ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -36,3 +40,7 @@ export const Linkedin = ({ size = 24, ...props }) => (
     <circle cx="4" cy="4" r="2" />
   </svg>
 );
+
+Linkedin.propTypes = {
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+};

@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { Sun, Moon, X, Menu } from 'lucide-react';
 
 export default function Navbar({
@@ -86,3 +86,12 @@ export default function Navbar({
     </header>
   );
 }
+
+Navbar.propTypes = {
+  theme: PropTypes.string.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
+  activeSection: PropTypes.string.isRequired,
+  mobileMenuOpen: PropTypes.bool.isRequired,
+  setMobileMenuOpen: PropTypes.func.isRequired,
+  isScrolled: PropTypes.bool.isRequired
+};
