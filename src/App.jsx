@@ -379,7 +379,7 @@ function App() {
       tech: ["React.js", "JavaScript (ES6+)", "CSS3", "REST API"],
       themeColor: "#f59e0b",
       image: "/bookstore.png",
-      liveUrl: "https://github.com/rithu-parna/Book_Store",
+      liveUrl: "https://book-store-orpin-alpha.vercel.app/",
       githubUrl: "https://github.com/rithu-parna/Book_Store"
     },
     {
@@ -392,7 +392,7 @@ function App() {
       tech: ["React.js", "Node.js", "CSS3", "REST API"],
       themeColor: "#10b981",
       image: "/homestay.png",
-      liveUrl: "https://github.com/rithu-parna/home_stay_web_app",
+      liveUrl: "https://home-stay-web-app.vercel.app/",
       githubUrl: "https://github.com/rithu-parna/home_stay_web_app"
     },
     {
@@ -405,7 +405,7 @@ function App() {
       tech: ["React.js", "Redux", "Node.js", "Payment Gateway"],
       themeColor: "#8b5cf6",
       image: "/nexus.png",
-      liveUrl: "https://github.com/rithu-parna",
+      liveUrl: "https://fancy-mall-bedk.vercel.app/",
       githubUrl: "https://github.com/rithu-parna"
     },
     {
@@ -431,7 +431,7 @@ function App() {
       tech: ["React.js", "Socket.io", "Node.js", "Express"],
       themeColor: "#3b82f6",
       image: "/chat.png",
-      liveUrl: "https://github.com/rithu-parna",
+      liveUrl: "https://chat-app-vfut.vercel.app/",
       githubUrl: "https://github.com/rithu-parna"
     },
     {
