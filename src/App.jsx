@@ -681,24 +681,30 @@ function App() {
       {/* Stats Section */}
       <section className="stats-section">
         <div className="container">
-          <div className="stats-grid reveal-on-scroll reveal-stagger">
-            <div className="stat-card reveal-flip">
+          <motion.div 
+            className="stats-grid"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.15 }}
+            variants={staggerContainer}
+          >
+            <motion.div className="stat-card" variants={staggerItem}>
               <div className="stat-number">3+</div>
               <div className="stat-label">Years of Experience</div>
-            </div>
-            <div className="stat-card reveal-flip">
+            </motion.div>
+            <motion.div className="stat-card" variants={staggerItem}>
               <div className="stat-number">15+</div>
               <div className="stat-label">Projects Completed</div>
-            </div>
-            <div className="stat-card reveal-flip">
+            </motion.div>
+            <motion.div className="stat-card" variants={staggerItem}>
               <div className="stat-number">1k+</div>
               <div className="stat-label">GitHub Contributions</div>
-            </div>
-            <div className="stat-card reveal-flip">
+            </motion.div>
+            <motion.div className="stat-card" variants={staggerItem}>
               <div className="stat-number">99%</div>
               <div className="stat-label">Performance Core Web Vitals</div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
