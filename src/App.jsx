@@ -1,23 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Terminal, 
-  Code2, 
-  Layers, 
-  Cpu, 
-  Sparkles, 
-  ArrowUpRight, 
-  Mail, 
-  Menu, 
-  X, 
-  Sun, 
-  Moon, 
-  Send, 
+import {
+  Terminal,
+  Code2,
+  Layers,
+  Cpu,
+  Sparkles,
+  ArrowUpRight,
+  Mail,
+  Menu,
+  X,
+  Sun,
+  Moon,
+  Send,
   CheckCircle,
   ExternalLink,
   MapPin,
   Phone,
   ChevronRight,
-  Copy
+  Copy,
+  Download,
+  Calendar,
+  Award,
+  Users
 } from 'lucide-react';
 import './App.css';
 
@@ -68,7 +72,7 @@ const useTypewriter = (words, speed = 100, delay = 1500) => {
   useEffect(() => {
     let timer;
     const currentWord = words[currentWordIndex];
-    
+
     if (isDeleting) {
       timer = setTimeout(() => {
         setCurrentText(prev => prev.slice(0, -1));
@@ -111,6 +115,7 @@ function App() {
   const [projectFilter, setProjectFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [showFullAbout, setShowFullAbout] = useState(false);
 
   // Contact Form State
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -361,8 +366,8 @@ function App() {
     }
   ];
 
-  const filteredProjects = projectFilter === 'all' 
-    ? projects 
+  const filteredProjects = projectFilter === 'all'
+    ? projects
     : projects.filter(p => p.category === projectFilter);
 
   // Skill Config Data
@@ -413,8 +418,8 @@ function App() {
           <nav>
             <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
               <li>
-                <a 
-                  href="#home" 
+                <a
+                  href="#home"
                   className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -422,8 +427,8 @@ function App() {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#about" 
+                <a
+                  href="#about"
                   className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -431,8 +436,8 @@ function App() {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#skills" 
+                <a
+                  href="#skills"
                   className={`nav-link ${activeSection === 'skills' ? 'active' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -441,8 +446,8 @@ function App() {
               </li>
 
               <li>
-                <a 
-                  href="#projects" 
+                <a
+                  href="#projects"
                   className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -450,8 +455,8 @@ function App() {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#contact" 
+                <a
+                  href="#contact"
                   className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -462,15 +467,15 @@ function App() {
           </nav>
 
           <div className="nav-actions">
-            <button 
-              className="icon-btn" 
-              onClick={toggleTheme} 
+            <button
+              className="icon-btn"
+              onClick={toggleTheme}
               aria-label="Toggle light/dark theme"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-            <button 
-              className="icon-btn menu-toggle" 
+            <button
+              className="icon-btn menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle main menu"
             >
@@ -484,7 +489,7 @@ function App() {
       <section id="home" className="hero">
         <div className="glow-bg animate-pulse-slow" style={{ top: '-10%', left: '-10%' }}></div>
         <div className="glow-bg-cyan animate-pulse-slow" style={{ bottom: '10%', right: '-10%' }}></div>
-        
+
         <div className="container">
           <div className="hero-grid">
             <div className="hero-content">
@@ -524,13 +529,13 @@ function App() {
                   <Terminal size={14} style={{ color: 'var(--text-muted)' }} />
                 </div>
                 <div className="terminal-tabs">
-                  <button 
+                  <button
                     className={`terminal-tab ${activeTerminalTab === 'about.js' ? 'active' : ''}`}
                     onClick={() => setActiveTerminalTab('about.js')}
                   >
                     about.js
                   </button>
-                  <button 
+                  <button
                     className={`terminal-tab ${activeTerminalTab === 'skills.json' ? 'active' : ''}`}
                     onClick={() => setActiveTerminalTab('skills.json')}
                   >
@@ -603,43 +608,96 @@ function App() {
 
       {/* About & Experience Section */}
       <section id="about" className="section">
-        <div className="container">
+        <div className="container" style={{marginTop:'-32px'}}>
           <div className="section-header">
-            <span className="section-subtitle">Biography</span>
-            <h2 className="section-title">Who is Rithuparna?</h2>
-            <p className="section-desc">
-              A brief lookup on my background, professional philosophy, and career journey.
-            </p>
+            <span className="section-subtitle">Biography</span>  
           </div>
-
           <div className="about-grid">
-            <div className="about-left reveal-on-scroll reveal-slide-left">
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>
-                I am a Product Engineer and Frontend Developer with a strong passion for building responsive, scalable web applications using React.js, Redux, and modern state management. With 3 years of hands-on experience, I focus on integrating RESTful APIs and optimizing cross-device performance.
-              </p>
-              <p style={{ marginBottom: '2.5rem', color: 'var(--text-secondary)' }}>
-                I believe in creating highly functional and accessible frontend interfaces. The details matter—from modular component reuse and clean code architectures down to state flows and responsive user journeys that make an application feel smooth and intuitive.
-              </p>
-              
-              <div className="about-features reveal-on-scroll reveal-stagger">
-                <div className="feature-card reveal-scale-in">
-                  <div className="feature-icon"><Layers size={24} /></div>
-                  <h4 className="feature-title">Modular Structure</h4>
-                  <p className="feature-desc">Building dry, highly reusable component abstractions.</p>
-                </div>
-                <div className="feature-card reveal-scale-in">
-                  <div className="feature-icon"><Sparkles size={24} /></div>
-                  <h4 className="feature-title">REST & API Flow</h4>
-                  <p className="feature-desc">Integrating high-performance asynchronous data endpoints.</p>
-                </div>
+            <div className="about-image-side reveal-on-scroll">
+              <div className="about-image-wrapper">
+                <img src="/about_developer.png" alt="Rithuparna A C" className="about-profile-img" />
+                <div className="about-image-glow"></div>
               </div>
             </div>
 
-            <div className="about-right reveal-on-scroll reveal-slide-right">
-              <h3 style={{ fontSize: '1.4rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span className="logo-dot" style={{ background: 'var(--accent-primary)' }}></span> History & Education
+            <div className="about-info-side reveal-on-scroll">
+              <h3 className="about-main-title">SOFTWARE DEVELOPER</h3>
+
+              <p className="about-desc-text">
+                Expert MERN stack developer with a proven track record of building high-performance, scalable, and user-focused web applications. Proficient in React.js, Redux, Node.js, Express.js, and MongoDB, with deep expertise in modern JavaScript (ES6+), HTML5, and CSS3. Skilled in writing clean, maintainable code and following industry best practices. Experienced in agile environments, automated development workflows, and version control using Git. Dedicated to delivering reliable, secure, and optimized solutions that align with business goals and enhance user experience.
+              </p>
+
+              <div className="about-contact-details">
+                <div className="contact-detail-row">
+                  <strong>Email:</strong> <a href="mailto:rithu7025@gmail.com">rithu7025@gmail.com</a>
+                </div>
+                <div className="contact-detail-row">
+                  <strong>Address:</strong> <span>Sreenadhanam House, Thendankkandy Meethal, Perambra post, Kozhikode, Pin- 673525</span>
+                </div>
+                <div className="contact-detail-row">
+                  <strong>Phone:</strong> <a href="tel:+918086710182">+91 8086710182</a>
+                </div>
+                <div className="contact-detail-row">
+                  <strong>GitHub:</strong> <a href="https://github.com/rithu-parna" target="_blank" rel="noopener noreferrer">github.com/rithu-parna</a>
+                </div>
+                <div className="contact-detail-row">
+                  <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rithuparna-ac" target="_blank" rel="noopener noreferrer">linkedin.com/in/rithuparna-ac</a>
+                </div>
+              </div>
+
+              <div className="about-stats-grid">
+                <div className="about-stat-card">
+                  <div className="about-stat-icon"><Calendar size={20} /></div>
+                  <div className="about-stat-info">
+                    <h4>3+</h4>
+                    <p>Years Experience</p>
+                  </div>
+                </div>
+                <div className="about-stat-card">
+                  <div className="about-stat-icon"><Award size={20} /></div>
+                  <div className="about-stat-info">
+                    <h4>10+</h4>
+                    <p>Projects Completed</p>
+                  </div>
+                </div>
+                <div className="about-stat-card">
+                  <div className="about-stat-icon"><Users size={20} /></div>
+                  <div className="about-stat-info">
+                    <h4>5+</h4>
+                    <p>Happy Clients</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="about-actions-row">
+                <a href="/resume.pdf" download="Rithuparna_AC_Resume.pdf" className="btn btn-primary">
+                  Download Resume <Download size={16} />
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience & Education Section */}
+      <section id="journey" className="section" style={{ borderTop: '1px solid var(--card-border)' }}>
+        <div className="container"  style={{marginTop:'-52px'}}>
+          <div className="section-header">
+            <span className="section-subtitle">My Journey</span>
+            <h2 className="section-title">Experience & Education</h2>
+            <p className="section-desc">
+              A historical look at my professional work experience and educational background.
+            </p>
+          </div>
+
+          <div className="journey-grid">
+            {/* Work Experience */}
+            <div className="journey-column reveal-on-scroll reveal-slide-left">
+              <h3 className="journey-column-title">
+                <span className="logo-dot" style={{ background: 'var(--accent-primary)' }}></span> Work Experience
               </h3>
-              
+
               <div className="timeline">
                 <div className="timeline-item reveal-on-scroll">
                   <div className="timeline-dot"></div>
@@ -664,7 +722,16 @@ function App() {
                     Built responsive and visually appealing web applications using HTML, CSS, Bootstrap, and JavaScript. Crafted clean, efficient, and scalable JS code, designed back-end services with Node.js/Express, and handled MySQL/MongoDB data persistence.
                   </p>
                 </div>
+              </div>
+            </div>
 
+            {/* Education */}
+            <div className="journey-column reveal-on-scroll reveal-slide-right">
+              <h3 className="journey-column-title">
+                <span className="logo-dot" style={{ background: 'var(--accent-secondary)' }}></span> Education
+              </h3>
+
+              <div className="timeline">
                 <div className="timeline-item reveal-on-scroll">
                   <div className="timeline-dot"></div>
                   <div className="timeline-header-info">
@@ -708,8 +775,8 @@ function App() {
                         <span className="skill-percent">{skill.level}%</span>
                       </div>
                       <div className="skill-bar-bg">
-                        <div 
-                          className="skill-bar-fill" 
+                        <div
+                          className="skill-bar-fill"
                           style={{ width: skillsActive ? `${skill.level}%` : '0%' }}
                         ></div>
                       </div>
@@ -739,7 +806,7 @@ function App() {
           <ul className="portfolio-filters">
             {['all', 'react', 'fullstack', 'apps', 'tools', 'creative'].map((cat) => (
               <li key={cat}>
-                <button 
+                <button
                   className={`filter-btn ${projectFilter === cat ? 'active' : ''}`}
                   onClick={() => setProjectFilter(cat)}
                 >
@@ -751,8 +818,8 @@ function App() {
 
           <div className="projects-grid reveal-on-scroll reveal-stagger">
             {(showAllProjects ? filteredProjects : filteredProjects.slice(0, 3)).map((project) => (
-              <div 
-                className="project-card glass-card premium-card reveal-project-card" 
+              <div
+                className="project-card glass-card premium-card reveal-project-card"
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
               >
@@ -781,19 +848,19 @@ function App() {
                   <span className="project-card-tag">{project.tag.toUpperCase()}</span>
                   <h3 className="project-card-title">{project.title}</h3>
                   <p className="project-card-desc">{project.desc}</p>
-                  
+
                   <div className="project-card-tech">
                     {project.tech.map((t, idx) => (
                       <span className="tech-badge" key={idx}>{t}</span>
                     ))}
                   </div>
-                  
+
                   <div className="project-card-footer">
                     <span className="explore-link">View Details <ChevronRight size={14} className="project-chevron" /></span>
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="project-card-link-icon"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -808,7 +875,7 @@ function App() {
           {/* View More Button */}
           {filteredProjects.length > 3 && (
             <div className="view-more-container">
-              <button 
+              <button
                 className="btn btn-primary view-more-btn"
                 onClick={() => {
                   setShowAllProjects(!showAllProjects);
@@ -831,7 +898,7 @@ function App() {
             <button className="modal-close-btn" onClick={() => setSelectedProject(null)}>
               <X size={20} />
             </button>
-            
+
             <div className="modal-grid">
               {/* Left Column: Interactive Screenshot Showcase */}
               <div className="modal-preview-col">
@@ -920,7 +987,7 @@ function App() {
               {/* Interactive Contact Cards */}
               <div className="contact-methods-stack">
                 {/* Email Card */}
-                <div 
+                <div
                   className="interactive-contact-card glass-card"
                   onClick={() => handleCopy('rithu7025@gmail.com', 'email')}
                 >
@@ -939,7 +1006,7 @@ function App() {
                 </div>
 
                 {/* Phone Card */}
-                <div 
+                <div
                   className="interactive-contact-card glass-card"
                   onClick={() => handleCopy('+918086710182', 'phone')}
                 >
@@ -990,13 +1057,13 @@ function App() {
               <form className="premium-contact-form" onSubmit={handleFormSubmit}>
                 {/* Floating Group: Name */}
                 <div className={`form-floating-group ${formState.name ? 'has-value' : ''}`}>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
                     value={formState.name}
                     onChange={handleInputChange}
-                    className="form-input" 
+                    className="form-input"
                     placeholder=" "
                     required
                   />
@@ -1007,13 +1074,13 @@ function App() {
 
                 {/* Floating Group: Email */}
                 <div className={`form-floating-group ${formState.email ? 'has-value' : ''}`}>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
                     value={formState.email}
                     onChange={handleInputChange}
-                    className="form-input" 
+                    className="form-input"
                     placeholder=" "
                     required
                   />
@@ -1024,12 +1091,12 @@ function App() {
 
                 {/* Floating Group: Message */}
                 <div className={`form-floating-group ${formState.message ? 'has-value' : ''}`}>
-                  <textarea 
-                    id="message" 
-                    name="message" 
+                  <textarea
+                    id="message"
+                    name="message"
                     value={formState.message}
                     onChange={handleInputChange}
-                    className="form-textarea" 
+                    className="form-textarea"
                     placeholder=" "
                     required
                   ></textarea>
