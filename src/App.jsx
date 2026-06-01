@@ -25,6 +25,7 @@ import {
   Users
 } from 'lucide-react';
 import './App.css';
+import { motion } from 'framer-motion';
 
 // Custom SVG Icons (Lucide brand icons removed in v1)
 const Github = ({ size = 24, ...props }) => (
@@ -137,27 +138,121 @@ function App() {
   const roles = ["Product Engineer", "React.js Developer", "Frontend Developer", "API Integration Specialist"];
   const typingRole = useTypewriter(roles);
 
-  // IntersectionObserver for scroll animations
+  // Mobile state check to avoid horizontal translation wobble on small viewports
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-    const elements = document.querySelectorAll('.reveal-on-scroll');
-    elements.forEach((el) => revealObserver.observe(el));
+  // Framer Motion Animation Variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 35 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
 
-    return () => {
-      elements.forEach((el) => revealObserver.unobserve(el));
-    };
-  }, [showAllProjects]);
+  const fadeInDown = {
+    hidden: { opacity: 0, y: -35 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const fadeInLeft = {
+    hidden: { opacity: 0, x: isMobile ? 0 : -45, y: isMobile ? 25 : 0 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const fadeInRight = {
+    hidden: { opacity: 0, x: isMobile ? 0 : 45, y: isMobile ? 25 : 0 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.96 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.03
+      }
+    }
+  };
+
+  const staggerItem = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const staggerProjectCard = {
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const timelineItemVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.05
+      }
+    }
+  };
+
+  const timelineDotVariants = {
+    hidden: { scale: 0 },
+    visible: { 
+      scale: 1, 
+      transition: { type: 'spring', stiffness: 220, damping: 14 } 
+    }
+  };
+
+  const timelineContentVariants = {
+    hidden: { opacity: 0, x: isMobile ? 0 : 16, y: isMobile ? 12 : 0 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
 
   // Manage Scroll Header & Spy
   useEffect(() => {
@@ -610,18 +705,37 @@ function App() {
       {/* About & Experience Section */}
       <section id="about" className="section">
         <div className="container" style={{marginTop:'-32px'}}>
-          <div className="section-header">
+          <motion.div 
+            className="section-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={fadeInUp}
+          >
             <span className="section-subtitle">Biography</span>  
-          </div>
+            <h2 className="section-title">About Me</h2>
+          </motion.div>
           <div className="about-grid">
-            <div className="about-image-side reveal-on-scroll">
+            <motion.div 
+              className="about-image-side"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={fadeInLeft}
+            >
               <div className="about-image-wrapper">
                 <img src="/about_developer.jpeg" alt="Rithuparna A C" className="about-profile-img" />
                 <div className="about-image-glow"></div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="about-info-side reveal-on-scroll">
+            <motion.div 
+              className="about-info-side"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={fadeInRight}
+            >
               <h3 className="about-main-title">SOFTWARE DEVELOPER</h3>
 
               <p className="about-desc-text">
@@ -676,7 +790,7 @@ function App() {
                 </a>
 
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -684,68 +798,104 @@ function App() {
       {/* Experience & Education Section */}
       <section id="journey" className="section" style={{ borderTop: '1px solid var(--card-border)' }}>
         <div className="container"  style={{marginTop:'-52px'}}>
-          <div className="section-header">
+          <motion.div 
+            className="section-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={fadeInUp}
+          >
             <span className="section-subtitle">My Journey</span>
             <h2 className="section-title">Experience & Education</h2>
             <p className="section-desc">
               A historical look at my professional work experience and educational background.
             </p>
-          </div>
+          </motion.div>
 
           <div className="journey-grid">
             {/* Work Experience */}
-            <div className="journey-column reveal-on-scroll reveal-slide-left">
+            <motion.div 
+              className="journey-column"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
+              variants={fadeInLeft}
+            >
               <h3 className="journey-column-title">
                 <span className="logo-dot" style={{ background: 'var(--accent-primary)' }}></span> Work Experience
               </h3>
 
               <div className="timeline">
-                <div className="timeline-item reveal-on-scroll">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-header-info">
+                <motion.div 
+                  className="timeline-item"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }}
+                  variants={timelineItemVariants}
+                >
+                  <motion.div className="timeline-dot" variants={timelineDotVariants}></motion.div>
+                  <motion.div className="timeline-header-info" variants={timelineContentVariants}>
                     <span className="timeline-date">May 2023 - Present</span>
                     <span className="timeline-role">Product Engineer</span>
-                  </div>
-                  <div className="timeline-company">Frugal Scientific</div>
-                  <p className="timeline-desc">
+                  </motion.div>
+                  <motion.div className="timeline-company" variants={timelineContentVariants}>Frugal Scientific</motion.div>
+                  <motion.p className="timeline-desc" variants={timelineContentVariants}>
                     Responsible for building and integrating multiple modules within a logistics and supply chain management platform. Focuses on designing centralized RFQ & job dashboards, service booking modules, real-time notification alerts, and customer/vendor finance modules.
-                  </p>
-                </div>
+                  </motion.p>
+                </motion.div>
 
-                <div className="timeline-item reveal-on-scroll">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-header-info">
+                <motion.div 
+                  className="timeline-item"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }}
+                  variants={timelineItemVariants}
+                >
+                  <motion.div className="timeline-dot" variants={timelineDotVariants}></motion.div>
+                  <motion.div className="timeline-header-info" variants={timelineContentVariants}>
                     <span className="timeline-date">Dec 2022 - May 2023</span>
                     <span className="timeline-role">Frontend Developer Intern</span>
-                  </div>
-                  <div className="timeline-company">Full Stack Developer Academy</div>
-                  <p className="timeline-desc">
+                  </motion.div>
+                  <motion.div className="timeline-company" variants={timelineContentVariants}>Full Stack Developer Academy</motion.div>
+                  <motion.p className="timeline-desc" variants={timelineContentVariants}>
                     Built responsive and visually appealing web applications using HTML, CSS, Bootstrap, and JavaScript. Crafted clean, efficient, and scalable JS code, designed back-end services with Node.js/Express, and handled MySQL/MongoDB data persistence.
-                  </p>
-                </div>
+                  </motion.p>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Education */}
-            <div className="journey-column reveal-on-scroll reveal-slide-right">
+            <motion.div 
+              className="journey-column"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
+              variants={fadeInRight}
+            >
               <h3 className="journey-column-title">
                 <span className="logo-dot" style={{ background: 'var(--accent-secondary)' }}></span> Education
               </h3>
 
               <div className="timeline">
-                <div className="timeline-item reveal-on-scroll">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-header-info">
+                <motion.div 
+                  className="timeline-item"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }}
+                  variants={timelineItemVariants}
+                >
+                  <motion.div className="timeline-dot" variants={timelineDotVariants}></motion.div>
+                  <motion.div className="timeline-header-info" variants={timelineContentVariants}>
                     <span className="timeline-date">2019 - 2022</span>
                     <span className="timeline-role">B.Sc Computer Science</span>
-                  </div>
-                  <div className="timeline-company">RSM SNDP Yogam College</div>
-                  <p className="timeline-desc">
+                  </motion.div>
+                  <motion.div className="timeline-company" variants={timelineContentVariants}>RSM SNDP Yogam College</motion.div>
+                  <motion.p className="timeline-desc" variants={timelineContentVariants}>
                     Acquired foundational knowledge in database management systems, web development, software engineering, and core programming principles.
-                  </p>
-                </div>
+                  </motion.p>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -753,17 +903,33 @@ function App() {
       {/* Skills Section */}
       <section id="skills" className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--card-border)', borderBottom: '1px solid var(--card-border)' }} ref={skillsRef}>
         <div className="container">
-          <div className="section-header">
+          <motion.div 
+            className="section-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={fadeInUp}
+          >
             <span className="section-subtitle">Capabilities</span>
             <h2 className="section-title">Technical Expertise</h2>
             <p className="section-desc">
               My engineering stack is curated to deliver robust architectures combined with elegant animations.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="skills-grid reveal-on-scroll reveal-fade-in reveal-stagger">
+          <motion.div 
+            className="skills-grid"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.1 }}
+            variants={staggerContainer}
+          >
             {skillCategories.map((category, index) => (
-              <div className="skills-category glass-card" key={index}>
+              <motion.div 
+                className="skills-category glass-card" 
+                key={index}
+                variants={staggerItem}
+              >
                 <h3>
                   {category.icon}
                   {category.title}
@@ -784,9 +950,9 @@ function App() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -795,16 +961,28 @@ function App() {
       {/* Projects Portfolio Section */}
       <section id="projects" className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--card-border)', borderBottom: '1px solid var(--card-border)' }}>
         <div className="container">
-          <div className="section-header">
+          <motion.div 
+            className="section-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={fadeInUp}
+          >
             <span className="section-subtitle">Selected Work</span>
             <h2 className="section-title">Projects Showcase</h2>
             <p className="section-desc">
               A handpicked selection of React applications showing engineering complexity and performance focus.
             </p>
-          </div>
+          </motion.div>
 
           {/* Filters */}
-          <ul className="portfolio-filters">
+          <motion.ul 
+            className="portfolio-filters"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.5 }}
+            variants={fadeInDown}
+          >
             {['all', 'react', 'fullstack', 'apps', 'tools', 'creative'].map((cat) => (
               <li key={cat}>
                 <button
@@ -815,14 +993,21 @@ function App() {
                 </button>
               </li>
             ))}
-          </ul>
+          </motion.ul>
 
-          <div className="projects-grid reveal-on-scroll reveal-stagger">
+          <motion.div 
+            className="projects-grid"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05 }}
+            variants={staggerContainer}
+          >
             {(showAllProjects ? filteredProjects : filteredProjects.slice(0, 3)).map((project) => (
-              <div
-                className="project-card glass-card premium-card reveal-project-card"
+              <motion.div
+                className="project-card glass-card premium-card"
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
+                variants={staggerProjectCard}
               >
                 <div className="project-media">
                   <div className="project-mockup">
@@ -869,9 +1054,9 @@ function App() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* View More Button */}
           {filteredProjects.length > 3 && (
@@ -967,17 +1152,29 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="section">
         <div className="container">
-          <div className="section-header">
+          <motion.div 
+            className="section-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={fadeInUp}
+          >
             <span className="section-subtitle">Collaborate</span>
             <h2 className="section-title">Let's Build Something Great</h2>
             <p className="section-desc">
               Have a complex frontend problem, require premium React development, or want to discuss full-time roles? Reach out today.
             </p>
-          </div>
+          </motion.div>
 
           <div className="contact-grid">
             {/* Left Column: Interactive Contact Dashboard */}
-            <div className="contact-info-panel reveal-on-scroll reveal-slide-left">
+            <motion.div 
+              className="contact-info-panel"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
+              variants={fadeInLeft}
+            >
               {/* Availability Indicator */}
               <div className="availability-card glass-card">
                 <div className="availability-pulse">
@@ -1055,10 +1252,16 @@ function App() {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Column: Premium Contact Form */}
-            <div className="contact-form-panel glass-card reveal-on-scroll reveal-slide-right">
+            <motion.div 
+              className="contact-form-panel glass-card"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
+              variants={fadeInRight}
+            >
               <form className="premium-contact-form" onSubmit={handleFormSubmit}>
                 {/* Floating Group: Name */}
                 <div className={`form-floating-group ${formState.name ? 'has-value' : ''}`}>
@@ -1115,7 +1318,7 @@ function App() {
                   <Send size={16} className="submit-send-icon" />
                 </button>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -1129,7 +1332,13 @@ function App() {
       )}
 
       {/* Footer */}
-      <footer className="footer">
+      <motion.footer 
+        className="footer"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.5 }}
+        variants={fadeInUp}
+      >
         <div className="container">
           <div className="footer-content">
 
@@ -1138,7 +1347,7 @@ function App() {
             </p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
