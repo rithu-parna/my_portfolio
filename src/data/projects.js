@@ -35,7 +35,7 @@ export const projects = [
     tech: ["React.js", "HTML5", "CSS3 Modules", "Git/GitHub"],
     themeColor: "#10b981",
     image: "/thillakkam.png",
-    liveUrl: "https://thillakkamfancy.in/",
+    liveUrl: "https://thilakkamfancy.in/",
     githubUrl: "https://github.com/rithu-parna"
   },
   {
@@ -87,8 +87,8 @@ export const projects = [
     tech: ["React.js", "JavaScript", "Geolocation API", "CSS3"],
     themeColor: "#ef4444",
     image: "/blood.png",
-    liveUrl: "https://github.com/rithu-parna/Blood_Donar_App",
-    githubUrl: "https://github.com/rithu-parna/Blood_Donar_App"
+    liveUrl: "https://github.com/rithu-parna",
+    githubUrl: "https://github.com/rithu-parna"
   },
   {
     id: 8,
