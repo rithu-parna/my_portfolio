@@ -121,7 +121,8 @@ export default function About() {
               <div className="contact-detail-row">
                 <strong>LinkedIn:</strong>{" "}
                 <a
-                  href="https://www.linkedin.com/in/rithuparna-rithu"
+                  href="https://linkedin.com/in/rithuparna-rithu"
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >
