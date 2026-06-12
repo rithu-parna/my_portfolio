@@ -74,7 +74,7 @@ export const projects = [
     tech: ["React.js", "Redux", "Node.js", "Payment Gateway"],
     themeColor: "#8b5cf6",
     image: "/nexus.png",
-    liveUrl: "https://fancy-mall-bedk.vercel.app/",
+    liveUrl: "https://fancy-mall.vercel.app/",
     githubUrl: "https://github.com/rithu-parna"
   },
   {
