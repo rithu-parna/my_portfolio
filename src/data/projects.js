@@ -113,7 +113,7 @@ export const projects = [
     tech: ["React.js", "Weather API", "JavaScript", "CSS3"],
     themeColor: "#06b6d4",
     image: "/weather.png",
-    liveUrl: "https://github.com/rithu-parna/Weather_App",
+    liveUrl: "https://weather-app-sigma-two-93.vercel.app/",
     githubUrl: "https://github.com/rithu-parna/Weather_App"
   },
   {
